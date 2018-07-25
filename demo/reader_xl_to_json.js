@@ -12,14 +12,21 @@ var ExcelToJSON = function(e) {
 		});
 
 		workbook.SheetNames.forEach(function(sheetName) {
-			var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
-			//var json_object = JSON.stringify(XL_row_object);
+            var XL_row_object;
+			if (sheetName == 'Розподіл за темами великими')
+                XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName], {range:3});
+			else
+                XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+			var json_object = JSON.stringify(XL_row_object);
 			XL_row_object.sheet_name = sheetName;
 			reader_out[sheetName] = (XL_row_object);
+
 		})
-		
+
+
 		reader_to_chart();
 		reader_to_politics_by_gts();
+
 	};
 
 	reader.onerror = function(ex) {

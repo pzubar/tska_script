@@ -17,14 +17,41 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.10.8/xlsx.full.min.js"></script>
 		
 		<script src="chart_politics_by_gts.js"></script>
+		<script src="../pz_script.js"></script>
 		
-		<script src="upd_vis.js"></script>							<!-- 2) -->
+		<script src="upd_vis.js"></script>					<!-- 2) -->
 		<script src="reader_to_chart.js"></script>			<!-- 1) -->
 		<script src="reader_xl_to_json.js"></script>		<!-- 0) Has filereader onload callback that calls funcs above -->
 		
 		
 		<p><input type="file" onchange="ExcelToJSON(event)"/>
 		<button id="build_chart_btn">Build charts</button></p>
+
+		<canvas id="myCanvas" width="300" height="150" style="border:1px solid #d3d3d3;">
+			Your browser does not support the HTML5 canvas tag.</canvas>
+
+		<script>
+
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+
+            ctx.font = "36px Georgia";
+            ctx.fillText("ZAGOLOVOK!", 10, 50);
+
+            ctx.font = "30px Verdana";
+            // Create gradient
+            var gradient = ctx.createLinearGradient(0, 0, c.width, 0);
+            gradient.addColorStop("0", "magenta");
+            gradient.addColorStop("0.5", "blue");
+            gradient.addColorStop("1.0", "red");
+            // Fill with gradient
+            ctx.fillStyle = gradient;
+            ctx.fillText("Big smile!", 10, 90);
+
+		</script>
+
+		<h4 id="pz_title">Title</h4>
+
 		<p>Sheets:</p>
 		<ul id="gt_ul"></ul>
 		
@@ -33,6 +60,7 @@
 			<div id="gt_by_pol_chart_container_asses" style="width: 1200px; height: 600px; margin: 0 auto; border: 1px dashed lightgray"></div>
 			<p id="politicians_count">Всього політиків: </p>
 			<p>Split by: <input id="pol_by_gts_split_by_input" type="text"/><button id="pol_by_gts_split">Split</button></p>
+			<button class="toggle_title">Toggle title</button>
 		</div>
 		
 		<div class="gt_by_pol_chart_div">
@@ -62,6 +90,5 @@
 		</div>
 		
 
-		
   </body>
 </html>

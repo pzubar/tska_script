@@ -72,7 +72,9 @@ function reader_to_chart(){
 		for(var i = 0, l = Object.keys(reader_out).length, s = false, li, check_topic, cln, a; i < l; i++){
 			li = document.createElement("li");
 			check_topic = Object.keys(reader_out)[i];
-			
+
+			// a
+
 			if(lookup_color(check_topic, colors)){
 				li.style.listStyleType = "disc";
 				//li.style.fontWeight = "bold";
@@ -259,7 +261,8 @@ function reader_to_chart(){
 		}
 		
 		upd_vis();
-		
+
 	}
 	build_charts_gt_t_by_politics();
+
 }

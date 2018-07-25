@@ -26,7 +26,7 @@ function reader_to_politics_by_gts(){
 				else
 					break;
 			}
-			
+
 			r++;
 			for(l = sht.length; r < l; r++){
 				if(!subtopics.includes(sht[r][col_a]) && !exclude.includes(sht[r][col_a])){
