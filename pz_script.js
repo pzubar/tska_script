@@ -1,11 +1,9 @@
 function pz_script() {
 
     var bigTopics = reader_out['Розподіл за темами великими'];
-    // var bigTopicsTitle = bigTopics.sheet_name;
-    // console.log(bigTopics);
+
     var bigname = "Розподіл за темами великими";
     var bigCategories = [];
-    // for
 
     bigTopics.forEach(function(item, i, bigTopics) {
         var result = item['Названия строк'].split(/\//);
@@ -18,12 +16,18 @@ function pz_script() {
             bigCategories.push(new Date(timestamp));
         }
     });
+
+    var bigSeries = [];
+    var bigSeriesNames = null;
+    var bigtopicTemplate = Object.keys(bigTopics[0]);
+    alert(bigtopicTemplate.length);
+
     Highcharts.chart('container', {
         chart: {
             type: 'area'
         },
         title: {
-            text: 'Area chart with negative values'
+            text: bigname
         },
         xAxis: {
             categories: bigCategories
