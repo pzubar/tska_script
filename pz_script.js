@@ -1,11 +1,11 @@
 function pz_script() {
 
     var bigTopics = reader_out['Розподіл за темами великими'];
-
     var bigname = "Розподіл за темами великими";
     var bigCategories = [];
 
     bigTopics.forEach(function(item, i, bigTopics) {
+        delete item['(пусто)'];
         var result = item['Названия строк'].split(/\//);
         var day = result[0];
         var month = result[1];
@@ -15,13 +15,40 @@ function pz_script() {
         if (isNaN(timestamp) == false) {
             bigCategories.push(new Date(timestamp));
         }
+        delete item['Названия строк'];
     });
-
     var bigSeries = [];
-    var bigSeriesNames = null;
-    var bigtopicTemplate = Object.keys(bigTopics[0]);
-    alert(bigtopicTemplate.length);
+    var bigSeriesNames = Object.keys(bigTopics[0]);
+    // var bigSeriesData
+    bigSeriesNames.forEach(function(item, i, bigSeriesNames) {
+        bigSeries[i] = new Object();
+        // bigSeries[i].name
+        bigSeries[i].name = item;
+        bigSeries[i].data = [];
+        // for each (var elem in bigTopics) {
+        //     console.log(elem);
+        //     //bigSeries[i].data.push
+        // }
+        for (var a = 0; a < bigTopics.length; a++) {
+            // text += cars[i] + "<br>";
+            // bigSeries[i].data.push(bigTopics[a][item]);
+            var elem = bigTopics[a];
+            // console.log(elem[item]);
+            // console.log(item);
+            bigSeries[i].data.push(Number(elem[item]));
+        }
 
+        // bigTopics.forEach(function(element, i, item) {
+        //     bigSeries[i].data.push(element[item]);
+        // });
+
+        // bigSeries[i].data = Object.values(bigTopics[i]);
+        // bigTopics[i].forEach(function(item, n, bigTopics[i]){
+        //     bigSeries[i].data.push(bigTopics[i]);
+        // }
+        ; //= [5, 3, 4, 7, 2, 5, 3, 4, 7, 2];
+    });
+    delete bigSeriesNames[0];
     Highcharts.chart('container', {
         chart: {
             type: 'area'
@@ -35,16 +62,17 @@ function pz_script() {
         credits: {
             enabled: false
         },
-        series: [{
-            name: 'John',
-            data: [5, 3, 4, 7, 2]
-        }, {
-            name: 'Jane',
-            data: [2, -2, -3, 2, 1]
-        }, {
-            name: 'Joe',
-            data: [3, 4, 4, -2, 5]
-        }]
+        series: bigSeries
+        // series: [{
+        //     name: 'John',
+        //     data: [5, 3, 4, 7, 2]
+        // }, {
+        //     name: 'Jane',
+        //     data: [2, -2, -3, 2, 1]
+        // }, {
+        //     name: 'Joe',
+        //     data: [3, 4, 4, -2, 5]
+        // }]
     });
 
     // Highcharts.chart('container', {
