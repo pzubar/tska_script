@@ -3,107 +3,108 @@ var glob_d;
 function reader_to_politics_by_gts(){
 	
 	//have to form data series again with this, sheet 'Розподіл за політиками' doesnt read well
-	var get_data = function(){
-		var gt_by_pol = {}, pol_sum = {};
-		var arr_pol_sum = [], gt_alphaorder = [], colors_gt_alphaorder = [];
-		var data_pol_by_gt_stacked = [], cats_pol_topsum = [];
-		var sht, col_a, col_b, subtopics, pol;
-		var exclude = ['Общий итог', 'Більша тема', 'Названия строк'];
-		
-		for(gt in lbls){
-			sht = reader_out[gt];
-			gt = lookup_grosstopic(gt, colors);
-			gt = gt.charAt(0).toUpperCase() + gt.slice(1);
-			gt_by_pol[gt] = {};
-			
-			col_a = Object.keys(sht[0])[0];
-			col_b = Object.keys(sht[0])[1];
-			
-			subtopics = [];
-			for(var r = 1, l = sht.length; r < l; r++){
-				if(sht[r][col_a] != 'Общий итог')
-					subtopics.push(sht[r][col_a]);
-				else
-					break;
-			}
+    var get_data;
+    get_data = function () {
+        var gt_by_pol = {}, pol_sum = {};
+        var arr_pol_sum = [], gt_alphaorder = [], colors_gt_alphaorder = [];
+        var data_pol_by_gt_stacked = [], cats_pol_topsum = [];
+        var sht, col_a, col_b, subtopics, pol;
+        var exclude = ['Общий итог', 'Більша тема', 'Названия строк'];
 
-			r++;
-			for(l = sht.length; r < l; r++){
-				if(!subtopics.includes(sht[r][col_a]) && !exclude.includes(sht[r][col_a])){
-					pol = sht[r][col_a];
-					if(!(pol in gt_by_pol[gt]))
-						gt_by_pol[gt][pol] = +sht[r][col_b];
-					else
-						gt_by_pol[gt][pol] += +sht[r][col_b];
-				}
-			}
-		}
-		
-		for(k in gt_by_pol){
-			for(p in gt_by_pol[k]){
-				if(!(p in pol_sum))
-					pol_sum[p] = +gt_by_pol[k][p];
-				else
-					pol_sum[p] += +gt_by_pol[k][p];
-			}
-		}
-		
-		for(k in pol_sum){
-			arr_pol_sum.push([k, pol_sum[k]]);
-		}
-		pol_sum = null;
-		arr_pol_sum.sort(compareSecondColumnDesc);
-		
-		document.getElementById("politicians_count").textContent += arr_pol_sum.length;
-		document.getElementById("pol_by_gts_split_by_input").value = "2 " + Math.ceil((arr_pol_sum.length - 2) / 2) + " " + (arr_pol_sum.length - 2 - Math.ceil((arr_pol_sum.length - 2) / 2));
-		
-		gt_alphaorder = Object.keys(gt_by_pol);
-		gt_alphaorder.sort(sortUkrAlphabet);
-		
-		for(k in arr_pol_sum){
-			cats_pol_topsum.push(arr_pol_sum[k][0]);
-		}
-		arr_pol_sum = null;
-		
-		//get data_pol_by_gt_stacked aka series data for stacked bar chart
-		var d, v;
-		for(t in gt_alphaorder){
-			d = [];
-			for(p in cats_pol_topsum){
-				v = gt_by_pol[gt_alphaorder[t]][cats_pol_topsum[p]];
-				(v === undefined) && (v = 0);
-				//d.push(v);
-				d.push({
-					y: v,
-					//color: lookup_color(gt_alphaorder[t], colors)
-				});
-			}
-			data_pol_by_gt_stacked.push({
-				name: gt_alphaorder[t],
-				data: d,
-			});
-			colors_gt_alphaorder.push(lookup_color(gt_alphaorder[t], colors));
-		}
-		
-		function compareSecondColumnDesc(a, b) {
-			if (a[1] === b[1])
-				return 0;
-			else
-				return (a[1] < b[1]) ? 1 : -1;
-		}
-		
-		function sortUkrAlphabet(a, b){
-			var ukr = "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя";
-			for(var c = 0, l = Math.min(a.length, b.length); c < l; c++){
-				if(a[c].toLowerCase() === b[c].toLowerCase())
-					continue;
-				else
-					return (ukr.indexOf(a[c].toLowerCase()) < ukr.indexOf(b[c].toLowerCase())) ? 1 : -1;
-			}
-		}
-		
-		return [cats_pol_topsum, data_pol_by_gt_stacked, colors_gt_alphaorder];
-	}
+        for (gt in lbls) {
+            sht = reader_out[gt];
+            gt = lookup_grosstopic(gt, colors);
+            gt = gt.charAt(0).toUpperCase() + gt.slice(1);
+            gt_by_pol[gt] = {};
+
+            col_a = Object.keys(sht[0])[0];
+            col_b = Object.keys(sht[0])[1];
+
+            subtopics = [];
+            for (var r = 1, l = sht.length; r < l; r++) {
+                if (sht[r][col_a] != 'Общий итог')
+                    subtopics.push(sht[r][col_a]);
+                else
+                    break;
+            }
+
+            r++;
+            for (l = sht.length; r < l; r++) {
+                if (!subtopics.includes(sht[r][col_a]) && !exclude.includes(sht[r][col_a])) {
+                    pol = sht[r][col_a];
+                    if (!(pol in gt_by_pol[gt]))
+                        gt_by_pol[gt][pol] = +sht[r][col_b];
+                    else
+                        gt_by_pol[gt][pol] += +sht[r][col_b];
+                }
+            }
+        }
+
+        for (k in gt_by_pol) {
+            for (p in gt_by_pol[k]) {
+                if (!(p in pol_sum))
+                    pol_sum[p] = +gt_by_pol[k][p];
+                else
+                    pol_sum[p] += +gt_by_pol[k][p];
+            }
+        }
+
+        for (k in pol_sum) {
+            arr_pol_sum.push([k, pol_sum[k]]);
+        }
+        pol_sum = null;
+        arr_pol_sum.sort(compareSecondColumnDesc);
+
+        document.getElementById("politicians_count").textContent += arr_pol_sum.length;
+        document.getElementById("pol_by_gts_split_by_input").value = "2 " + Math.ceil((arr_pol_sum.length - 2) / 2) + " " + (arr_pol_sum.length - 2 - Math.ceil((arr_pol_sum.length - 2) / 2));
+
+        gt_alphaorder = Object.keys(gt_by_pol);
+        gt_alphaorder.sort(sortUkrAlphabet);
+
+        for (k in arr_pol_sum) {
+            cats_pol_topsum.push(arr_pol_sum[k][0]);
+        }
+        arr_pol_sum = null;
+
+        //get data_pol_by_gt_stacked aka series data for stacked bar chart
+        var d, v;
+        for (t in gt_alphaorder) {
+            d = [];
+            for (p in cats_pol_topsum) {
+                v = gt_by_pol[gt_alphaorder[t]][cats_pol_topsum[p]];
+                (v === undefined) && (v = 0);
+                //d.push(v);
+                d.push({
+                    y: v,
+                    //color: lookup_color(gt_alphaorder[t], colors)
+                });
+            }
+            data_pol_by_gt_stacked.push({
+                name: gt_alphaorder[t],
+                data: d,
+            });
+            colors_gt_alphaorder.push(lookup_color(gt_alphaorder[t], colors));
+        }
+
+        function compareSecondColumnDesc(a, b) {
+            if (a[1] === b[1])
+                return 0;
+            else
+                return (a[1] < b[1]) ? 1 : -1;
+        }
+
+        function sortUkrAlphabet(a, b) {
+            var ukr = "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя";
+            for (var c = 0, l = Math.min(a.length, b.length); c < l; c++) {
+                if (a[c].toLowerCase() === b[c].toLowerCase())
+                    continue;
+                else
+                    return (ukr.indexOf(a[c].toLowerCase()) < ukr.indexOf(b[c].toLowerCase())) ? 1 : -1;
+            }
+        }
+
+        return [cats_pol_topsum, data_pol_by_gt_stacked, colors_gt_alphaorder];
+    };
 	var d = get_data();
 	get_data = null;
 	glob_d = d;
