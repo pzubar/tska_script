@@ -1,46 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>TSKA-SCRIPT</title>
 </head>
 <body>
 
-    <script src="pz_script.js"></script>
+    <!--<script src="pz_script.js"></script>-->
+    <script type="text/javascript" src="http://canvg.github.io/canvg/rgbcolor.js"></script>
+    <script type="text/javascript" src="http://canvg.github.io/canvg/StackBlur.js"></script>
+    <script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script>
+
+
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 
 
 
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <div id="content">
+        <h3>Hello, this is a H3 tag</h3>
 
-    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
-    <!--
-    <canvas id="myCanvas" width="300" height="150" style="border:1px solid #d3d3d3;">-->
-        <!--Your browser does not support the HTML5 canvas tag.</canvas>-->
-
-    <!--<script>-->
-
-        <!--var c = document.getElementById("myCanvas");-->
-        <!--var ctx = c.getContext("2d");-->
-
-        <!--ctx.font = "36px Georgia";-->
-        <!--ctx.fillText("ZAGOLOVOK!", 10, 50);-->
-
-        <!--ctx.font = "30px Verdana";-->
-        <!--// Create gradient-->
-        <!--var gradient = ctx.createLinearGradient(0, 0, c.width, 0);-->
-        <!--gradient.addColorStop("0", "magenta");-->
-        <!--gradient.addColorStop("0.5", "blue");-->
-        <!--gradient.addColorStop("1.0", "red");-->
-        <!--// Fill with gradient-->
-        <!--ctx.fillStyle = gradient;-->
-        <!--ctx.fillText("Big smile!", 10, 90);-->
-
-    <!--</script>-->
+        <p>a pararaph</p>
+        <div id="highcharts-bjnlgot-11" dir="ltr" class="highcharts-container " style="position: relative; overflow: hidden; width: 1200px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: &quot;Roboto Condensed&quot;; border-right: 1px dashed lightblue;"><svg version="1.1" class="highcharts-root" style="font-family:&quot;Roboto Condensed&quot;;font-size:12px;border-right:1px dashed lightblue;" xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400"><desc>Created with Highcharts 6.1.1</desc><defs><clipPath id="highcharts-bjnlgot-12"><rect x="0" y="0" width="1180" height="278" fill="none"></rect></clipPath><clipPath id="highcharts-bjnlgot-13"><rect x="10" y="71" width="1180" height="278" fill="none"></rect></clipPath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="1200" height="400" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="10" y="71" width="1180" height="278"></rect><g class="highcharts-grid highcharts-xaxis-grid " data-z-index="1"><path fill="none" data-z-index="1" class="highcharts-grid-line" d="M 157.5 71 L 157.5 349" opacity="1"></path><path fill="none" data-z-index="1" class="highcharts-grid-line" d="M 304.5 71 L 304.5 349" opacity="1"></path><path fill="none" data-z-index="1" class="highcharts-grid-line" d="M 452.5 71 L 452.5 349" opacity="1"></path><path fill="none" data-z-index="1" class="highcharts-grid-line" d="M 599.5 71 L 599.5 349" opacity="1"></path><path fill="none" data-z-index="1" class="highcharts-grid-line" d="M 747.5 71 L 747.5 349" opacity="1"></path><path fill="none" data-z-index="1" class="highcharts-grid-line" d="M 894.5 71 L 894.5 349" opacity="1"></path><path fill="none" data-z-index="1" class="highcharts-grid-line" d="M 1042.5 71 L 1042.5 349" opacity="1"></path><path fill="none" data-z-index="1" class="highcharts-grid-line" d="M 1189.5 71 L 1189.5 349" opacity="1"></path><path fill="none" data-z-index="1" class="highcharts-grid-line" d="M 9.5 71 L 9.5 349" opacity="1"></path></g><rect fill="none" class="highcharts-plot-border" data-z-index="1" x="10" y="71" width="1180" height="278"></rect><g class="highcharts-axis highcharts-xaxis " data-z-index="2"><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 157.5 349 L 157.5 359" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 304.5 349 L 304.5 359" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 452.5 349 L 452.5 359" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 599.5 349 L 599.5 359" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 747.5 349 L 747.5 359" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 894.5 349 L 894.5 359" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 1042.5 349 L 1042.5 359" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 1190.5 349 L 1190.5 359" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 9.5 349 L 9.5 359" opacity="1"></path><path fill="none" class="highcharts-axis-line" stroke="#ccd6eb" stroke-width="1" data-z-index="7" d="M 10 349.5 L 1190 349.5"></path></g><g class="highcharts-series-group" data-z-index="3"><g data-z-index="0.1" class="highcharts-series highcharts-series-0 highcharts-column-series  highcharts-tracker" transform="translate(10,71) scale(1 1)" clip-path="url(#highcharts-bjnlgot-12)"><rect x="47" y="34" width="54" height="245" fill="rgb(11, 112, 167)" class="highcharts-point"></rect><rect x="195" y="62" width="54" height="217" fill="rgb(11, 112, 167)" class="highcharts-point"></rect><rect x="342" y="246" width="54" height="33" fill="rgb(11, 112, 167)" class="highcharts-point"></rect><rect x="490" y="246" width="54" height="33" fill="rgb(11, 112, 167)" class="highcharts-point"></rect><rect x="637" y="251" width="54" height="28" fill="rgb(11, 112, 167)" class="highcharts-point"></rect><rect x="785" y="257" width="54" height="22" fill="rgb(11, 112, 167)" class="highcharts-point"></rect><rect x="932" y="268" width="54" height="11" fill="rgb(11, 112, 167)" class="highcharts-point"></rect><rect x="1080" y="273" width="54" height="6" fill="rgb(11, 112, 167)" class="highcharts-point"></rect></g><g data-z-index="0.1" class="highcharts-markers highcharts-series-0 highcharts-column-series " transform="translate(10,71) scale(1 1)" clip-path="none"></g></g><g class="highcharts-exporting-group" data-z-index="3"></g><text x="600" text-anchor="middle" class="highcharts-title" data-z-index="4" style="color:#333333;font-size:18px;fill:#333333;" y="24"></text><text x="600" text-anchor="middle" class="highcharts-subtitle" data-z-index="4" style="color:#666666;fill:#666666;" y="24"></text><g data-z-index="6" class="highcharts-data-labels highcharts-series-0 highcharts-column-series  highcharts-tracker" transform="translate(10,71) scale(1 1)" opacity="1" visibility="visible"><g class="highcharts-label highcharts-data-label highcharts-data-label-color-undefined " data-z-index="1" transform="translate(64,34)"><text x="5" data-z-index="1" style="font-size:11px;font-weight:bold;color:white;fill:white;" y="16"><tspan>44</tspan></text></g><g class="highcharts-label highcharts-data-label highcharts-data-label-color-undefined " data-z-index="1" transform="translate(212,62)"><text x="5" data-z-index="1" style="font-size:11px;font-weight:bold;color:white;fill:white;" y="16"><tspan>39</tspan></text></g><g class="highcharts-label highcharts-data-label highcharts-data-label-color-undefined " data-z-index="1" transform="translate(361,246)"><text x="5" data-z-index="1" style="font-size:11px;font-weight:bold;color:white;fill:white;" y="16"><tspan>6</tspan></text></g><g class="highcharts-label highcharts-data-label highcharts-data-label-color-undefined " data-z-index="1" transform="translate(509,246)"><text x="5" data-z-index="1" style="font-size:11px;font-weight:bold;color:white;fill:white;" y="16"><tspan>6</tspan></text></g><g class="highcharts-label highcharts-data-label highcharts-data-label-color-undefined " data-z-index="1" transform="translate(656,251)"><text x="5" data-z-index="1" style="font-size:11px;font-weight:bold;color:white;fill:white;" y="16"><tspan>5</tspan></text></g><g class="highcharts-label highcharts-data-label highcharts-data-label-color-undefined " data-z-index="1" transform="translate(804,257)"><text x="5" data-z-index="1" style="font-size:11px;font-weight:bold;color:white;fill:white;" y="16"><tspan>4</tspan></text></g><g class="highcharts-label highcharts-data-label highcharts-data-label-color-undefined " data-z-index="1" transform="translate(951,259)"><text x="5" data-z-index="1" style="font-size:11px;font-weight:bold;color:white;fill:white;" y="16"><tspan>2</tspan></text></g><g class="highcharts-label highcharts-data-label highcharts-data-label-color-undefined " data-z-index="1" transform="translate(1099,259)"><text x="5" data-z-index="1" style="font-size:11px;font-weight:bold;color:white;fill:white;" y="16"><tspan>1</tspan></text></g></g><g class="highcharts-annotation" data-z-index="6" visibility="visible"><g class="highcharts-annotation-shapes" clip-path="url(#highcharts-bjnlgot-13)"></g><g class="highcharts-annotation-labels" transform="translate(0,0)"><g class="highcharts-label highcharts-annotation-label" transform="translate(1057,303)"><path fill="#F0F0F0" class="highcharts-label-box highcharts-annotation-label-box" d="M 3.5 0.5 L 117.5 0.5 C 120.5 0.5 120.5 0.5 120.5 3.5 L 120.5 22.5 C 120.5 25.5 120.5 25.5 117.5 25.5 L 65.5 25.5 59.5 31.5 53.5 25.5 3.5 25.5 C 0.5 25.5 0.5 25.5 0.5 22.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#cccccc" stroke-width="1"></path><text x="5" data-z-index="1" style="font-size:11px;font-weight:normal;color:#000000;fill:#000000;" y="16"><tspan>Володимир Гройсман (1)</tspan></text></g><g class="highcharts-label highcharts-annotation-label" transform="translate(909,298)"><path fill="#F0F0F0" class="highcharts-label-box highcharts-annotation-label-box" d="M 3.5 0.5 L 117.5 0.5 C 120.5 0.5 120.5 0.5 120.5 3.5 L 120.5 22.5 C 120.5 25.5 120.5 25.5 117.5 25.5 L 65.5 25.5 59.5 31.5 53.5 25.5 3.5 25.5 C 0.5 25.5 0.5 25.5 0.5 22.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#cccccc" stroke-width="1"></path><text x="5" data-z-index="1" style="font-size:11px;font-weight:normal;color:#000000;fill:#000000;" y="16"><tspan>Володимир Гройсман (2)</tspan></text></g><g class="highcharts-label highcharts-annotation-label" transform="translate(774,273)"><path fill="#F0F0F0" class="highcharts-label-box highcharts-annotation-label-box" d="M 3.5 0.5 L 92.5 0.5 C 95.5 0.5 95.5 0.5 95.5 3.5 L 95.5 36.5 C 95.5 39.5 95.5 39.5 92.5 39.5 L 53.5 39.5 47.5 45.5 41.5 39.5 3.5 39.5 C 0.5 39.5 0.5 39.5 0.5 36.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#cccccc" stroke-width="1"></path><text x="5" data-z-index="1" style="font-size:11px;font-weight:normal;color:#000000;fill:#000000;" y="16"><tspan>Сергій Лещенко (3)</tspan><tspan x="5" dy="14">Мустафа Найєм (1)</tspan></text></g><g class="highcharts-label highcharts-annotation-label" transform="translate(631,281)"><path fill="#F0F0F0" class="highcharts-label-box highcharts-annotation-label-box" d="M 3.5 0.5 L 83.5 0.5 C 86.5 0.5 86.5 0.5 86.5 3.5 L 86.5 22.5 C 86.5 25.5 86.5 25.5 83.5 25.5 L 48.5 25.5 42.5 31.5 36.5 25.5 3.5 25.5 C 0.5 25.5 0.5 25.5 0.5 22.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#cccccc" stroke-width="1"></path><text x="5" data-z-index="1" style="font-size:11px;font-weight:normal;color:#000000;fill:#000000;" y="16"><tspan>Арсен Аваков (5)</tspan></text></g><g class="highcharts-label highcharts-annotation-label" transform="translate(479,248)"><path fill="#F0F0F0" class="highcharts-label-box highcharts-annotation-label-box" d="M 3.5 0.5 L 92.5 0.5 C 95.5 0.5 95.5 0.5 95.5 3.5 L 95.5 50.5 C 95.5 53.5 95.5 53.5 92.5 53.5 L 53.5 53.5 47.5 59.5 41.5 53.5 3.5 53.5 C 0.5 53.5 0.5 53.5 0.5 50.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#cccccc" stroke-width="1"></path><text x="5" data-z-index="1" style="font-size:11px;font-weight:normal;color:#000000;fill:#000000;" y="16"><tspan>Віктор Чумак (2)</tspan><tspan x="5" dy="14">Сергій Лещенко (2)</tspan><tspan x="5" dy="14">Мустафа Найєм (2)</tspan></text></g><g class="highcharts-label highcharts-annotation-label" transform="translate(319,276)"><path fill="#F0F0F0" class="highcharts-label-box highcharts-annotation-label-box" d="M 3.5 0.5 L 117.5 0.5 C 120.5 0.5 120.5 0.5 120.5 3.5 L 120.5 22.5 C 120.5 25.5 120.5 25.5 117.5 25.5 L 65.5 25.5 59.5 31.5 53.5 25.5 3.5 25.5 C 0.5 25.5 0.5 25.5 0.5 22.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#cccccc" stroke-width="1"></path><text x="5" data-z-index="1" style="font-size:11px;font-weight:normal;color:#000000;fill:#000000;" y="16"><tspan>Володимир Гройсман (6)</tspan></text></g><g class="highcharts-label highcharts-annotation-label" transform="translate(186,78)"><path fill="#F0F0F0" class="highcharts-label-box highcharts-annotation-label-box" d="M 3.5 0.5 L 89.5 0.5 C 92.5 0.5 92.5 0.5 92.5 3.5 L 92.5 36.5 C 92.5 39.5 92.5 39.5 89.5 39.5 L 51.5 39.5 45.5 45.5 39.5 39.5 3.5 39.5 C 0.5 39.5 0.5 39.5 0.5 36.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#cccccc" stroke-width="1"></path><text x="5" data-z-index="1" style="font-size:11px;font-weight:normal;color:#000000;fill:#000000;" y="16"><tspan>Юрій Луценко (38)</tspan><tspan x="5" dy="14">Сергій Тарута (1)</tspan></text></g><g class="highcharts-label highcharts-annotation-label" transform="translate(21,8)"><path fill="#F0F0F0" class="highcharts-label-box highcharts-annotation-label-box" d="M 3.5 0.5 L 123.5 0.5 C 126.5 0.5 126.5 0.5 126.5 3.5 L 126.5 78.5 C 126.5 81.5 126.5 81.5 123.5 81.5 L 68.5 81.5 62.5 87.5 56.5 81.5 3.5 81.5 C 0.5 81.5 0.5 81.5 0.5 78.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#cccccc" stroke-width="1"></path><text x="5" data-z-index="1" style="font-size:11px;font-weight:normal;color:#000000;fill:#000000;" y="16"><tspan>Володимир Гройсман (28)</tspan><tspan x="5" dy="14">Юрій Луценко (6)</tspan><tspan x="5" dy="14">Арсен Аваков (6)</tspan><tspan x="5" dy="14">Петро Порошенко (3)</tspan><tspan x="5" dy="14">Олег Ляшко (1)</tspan></text></g></g></g><g class="highcharts-legend" data-z-index="7"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="8" height="8" visibility="hidden"></rect><g data-z-index="1"><g></g></g></g><g class="highcharts-axis-labels highcharts-xaxis-labels " data-z-index="7"><text x="83.75" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="368" opacity="1"><tspan>Боротьба з контрабандою</tspan></text><text x="231.25" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="368" opacity="1"><tspan>Зловживання</tspan><tspan dy="14" x="231.25">держслужбовців</tspan></text><text x="378.75" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="368" opacity="1"><tspan>Лотерейний бізнес</tspan></text><text x="526.25" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="368" opacity="1"><tspan>Боротьба зі зловживаннями</tspan><tspan dy="14" x="526.25">на ринку електроенергії</tspan></text><text x="673.75" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="368" opacity="1"><tspan>Боротьба з незаконним</tspan><tspan dy="14" x="673.75">бізнесом</tspan></text><text x="821.25" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="368" opacity="1"><tspan>Критика влади</tspan></text><text x="968.75" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="368" opacity="1"><tspan>Контроль роботи податкової</tspan></text><text x="1116.25" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="368" opacity="1"><tspan>Антикорупційний суд</tspan></text></g></svg></div>
+    </div>
+    <div id="editor"></div>
+    <button id="cmd">generate PDF</button>
     <script>
-        pz_script();
+        //pdf saving
+        var doc = new jsPDF('l', 'px', 'a4');
+        var cmd = document.getElementById('cmd');
+        var content = document.getElementById('content');
+        doc.addPage()
+        doc.addPage()
+        doc.text('I am on page 3', 10, 10)
+        doc.setPage(1)
+        doc.text('I am on page 1', 10, 10)
+        var specialElementHandlers = {
+            '#editor': function (element, renderer) {
+                return true;
+            }
+        };
+
+
+
+        var svg = document.getElementById('highcharts-bjnlgot-11').innerHTML;
+
+        if (svg)
+            svg = svg.replace(/\r?\n|\r/g, '').trim();
+
+        var canvas = document.createElement('canvas');
+        var context = canvas.getContext('2d');
+
+
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        canvg(canvas, svg);
+
+//        alert(canvas.width);
+        var imgData = canvas.toDataURL('image/png');
+
+
+        cmd.onclick = (function () {
+//            doc.fromHTML(content.innerHTML, 15, 15, {
+//                'width': 170,
+////                'elementHandlers': specialElementHandlers
+//            });
+            doc.addImage(imgData, 'PNG', 40, 40, canvas.width / 2.2, canvas.height / 2.2);
+            doc.save('sample-file.pdf');
+        });
     </script>
 
 </body>

@@ -19,34 +19,14 @@ function pz_script() {
     });
     var bigSeries = [];
     var bigSeriesNames = Object.keys(bigTopics[0]);
-    // var bigSeriesData
-    bigSeriesNames.forEach(function(item, i, bigSeriesNames) {
+    bigSeriesNames.forEach(function(item, i) {
         bigSeries[i] = new Object();
-        // bigSeries[i].name
         bigSeries[i].name = item;
         bigSeries[i].data = [];
-        // for each (var elem in bigTopics) {
-        //     console.log(elem);
-        //     //bigSeries[i].data.push
-        // }
         for (var a = 0; a < bigTopics.length; a++) {
-            // text += cars[i] + "<br>";
-            // bigSeries[i].data.push(bigTopics[a][item]);
             var elem = bigTopics[a];
-            // console.log(elem[item]);
-            // console.log(item);
             bigSeries[i].data.push(Number(elem[item]));
         }
-
-        // bigTopics.forEach(function(element, i, item) {
-        //     bigSeries[i].data.push(element[item]);
-        // });
-
-        // bigSeries[i].data = Object.values(bigTopics[i]);
-        // bigTopics[i].forEach(function(item, n, bigTopics[i]){
-        //     bigSeries[i].data.push(bigTopics[i]);
-        // }
-        ; //= [5, 3, 4, 7, 2, 5, 3, 4, 7, 2];
     });
     delete bigSeriesNames[0];
     Highcharts.chart('container', {
