@@ -4,7 +4,7 @@ function pz_script() {
     var bigname = "Розподіл за темами великими";
     var bigCategories = [];
 
-    bigTopics.forEach(function(item, i, bigTopics) {
+    bigTopics.forEach(function (item, i, bigTopics) {
         delete item['(пусто)'];
         var result = item['Названия строк'].split(/\//);
         var day = result[0];
@@ -13,147 +13,92 @@ function pz_script() {
         var dateString = month + '/' + day + '/' + year;
         var timestamp = Date.parse(dateString);
         if (isNaN(timestamp) == false) {
-            bigCategories.push(new Date(timestamp));
+            // bigCategories.push(new Date(timestamp));
+            bigCategories.push(day + '.' + month + '.' + year);
         }
         delete item['Названия строк'];
     });
     var bigSeries = [];
+    //
+    // bigTopics.sort(function(a, b) {
+    //     if (a['Общий итог'] > b['Общий итог'])
+    //         return 1;
+    //     if (a['Общий итог'] < b['Общий итог'])
+    //         return -1;
+    //     return 0;
+    // });
+
     var bigSeriesNames = Object.keys(bigTopics[0]);
-    bigSeriesNames.forEach(function(item, i) {
+
+    delete bigSeriesNames[12]; // костыль - убираем 'общий итог'
+
+
+    bigSeriesNames.forEach(function (item, i) {
         bigSeries[i] = new Object();
         bigSeries[i].name = item;
+        bigSeries[i].color = lookup_color(item, colors);
         bigSeries[i].data = [];
+
         for (var a = 0; a < bigTopics.length; a++) {
+            if (a == 7) // костыль - (пусто) и суммарно, подумать, как реализовать по-человечески
+                break;
             var elem = bigTopics[a];
             bigSeries[i].data.push(Number(elem[item]));
         }
     });
-    delete bigSeriesNames[0];
     Highcharts.chart('container', {
         chart: {
             type: 'area'
         },
         title: {
-            text: bigname
+            text: ''//bigname
+        },
+        exporting: { enabled: false },
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            layout: 'vertical',
+            x: 0,
+            y: 100,
+            itemStyle: {
+                color: '#000000',
+                fontWeight: 'bold',
+                fontSize: '14px'
+            }
         },
         xAxis: {
-            categories: bigCategories
+            categories: bigCategories,
+            gridLineWidth: 1
+        },
+        yAxis: {
+            title: {
+                text: ''
+            },
+            gridLineWidth: 0
         },
         credits: {
             enabled: false
         },
+        plotOptions: {
+            area: {
+                stacking: 'normal',
+                lineColor: '#ffffff',
+                lineWidth: 1,
+                marker: {
+                    enabled: false,
+                    lineWidth: 1,
+                    lineColor: '#666666'
+                }
+            },
+            plotLines: [{
+                color: 'red', // Color value
+                dashStyle: 'solid', // Style of the plot line. Default to solid
+                width: 2 // Width of the line
+            }],
+            series: {
+                fillOpacity: 1
+            }
+        },
         series: bigSeries
-        // series: [{
-        //     name: 'John',
-        //     data: [5, 3, 4, 7, 2]
-        // }, {
-        //     name: 'Jane',
-        //     data: [2, -2, -3, 2, 1]
-        // }, {
-        //     name: 'Joe',
-        //     data: [3, 4, 4, -2, 5]
-        // }]
     });
-
-    // Highcharts.chart('container', {
-    //     chart: {
-    //         type: 'area'
-    //     },
-    //     title: {
-    //         text: bigTopics.sh
-    //     },
-    //     subtitle: {
-    //         text: 'Sources: <a href="https://thebulletin.org/2006/july/global-nuclear-stockpiles-1945-2006">' +
-    //         'thebulletin.org</a> &amp; <a href="https://www.armscontrol.org/factsheets/Nuclearweaponswhohaswhat">' +
-    //         'armscontrol.org</a>'
-    //     },
-    //     xAxis: {
-    //         allowDecimals: false,
-    //         labels: {
-    //             formatter: function () {
-    //                 return this.value; // clean, unformatted number for year
-    //             }
-    //         }
-    //     },
-    //     yAxis: {
-    //         title: {
-    //             text: 'Nuclear weapon states'
-    //         },
-    //         labels: {
-    //             formatter: function () {
-    //                 return this.value / 1000 + 'k';
-    //             }
-    //         }
-    //     },
-    //     tooltip: {
-    //         pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
-    //     },
-    //     plotOptions: {
-    //         area: {
-    //             pointStart: 1940,
-    //             marker: {
-    //                 enabled: false,
-    //                 symbol: 'circle',
-    //                 radius: 2,
-    //                 states: {
-    //                     hover: {
-    //                         enabled: true
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     },
-    //     series: [{
-    //         name: 'USA',
-    //         data: [
-    //             null, null, null, null, null, 6, 11, 32, 110, 235,
-    //             369, 640, 1005, 1436, 2063, 3057, 4618, 6444, 9822, 15468,
-    //             20434, 24126, 27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342,
-    //             26662, 26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
-    //             24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344, 23586, 22380,
-    //             21004, 17287, 14747, 13076, 12555, 12144, 11009, 10950, 10871, 10824,
-    //             10577, 10527, 10475, 10421, 10358, 10295, 10104, 9914, 9620, 9326,
-    //             5113, 5113, 4954, 4804, 4761, 4717, 4368, 4018
-    //         ]
-    //     }, {
-    //         name: 'USSR/Russia',
-    //         data: [null, null, null, null, null, null, null, null, null, null,
-    //             5, 25, 50, 120, 150, 200, 426, 660, 869, 1060,
-    //             1605, 2471, 3322, 4238, 5221, 6129, 7089, 8339, 9399, 10538,
-    //             11643, 13092, 14478, 15915, 17385, 19055, 21205, 23044, 25393, 27935,
-    //             30062, 32049, 33952, 35804, 37431, 39197, 45000, 43000, 41000, 39000,
-    //             37000, 35000, 33000, 31000, 29000, 27000, 25000, 24000, 23000, 22000,
-    //             21000, 20000, 19000, 18000, 18000, 17000, 16000, 15537, 14162, 12787,
-    //             12600, 11400, 5500, 4512, 4502, 4502, 4500, 4500
-    //         ]
-    //     }]
-    // });
-    // var container_pz = document.getElementById("gt_by_pol_chart_container_asses");
-   // var pz_svg = container_pz.childNodes[0].childNodes[0];
-   //  var container_pz = document.getElementById("gt_by_pol_chart_container_asses");
-   //
-   //  console.log(pz_svg.innerHTML);
-   // pz_wgaa.onload = function() {
-   //     alert("Ojd");
-   // }
-
-   // alert(pz_wgaa.id);
-   //  var pz_title = document.getElementById("pz_title").innerHTML;
-   //  var pz_aaa = document.createElement("text");
-   //  var pz_g = document.createElement("g");
-   //  pz_g.className = "chart-title";
-   //  pz_aaa.setAttribute("x", 0);
-   //  pz_aaa.setAttribute("y", 15);
-   //  pz_aaa.setAttribute("fill", "red");
-   //  pz_aaa.innerHTML = (pz_title);
-   //
-   //  //<text x="0" y="15" fill="red" transform="rotate(30 20,40)">I love SVG</text>
-   //  // alert(pz_wgaa.tagName);
-   //  pz_svg.appendChild(pz_aaa);
-
-
-
-    // var element = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    // pz_svg.appendChild(element);
-
 }
