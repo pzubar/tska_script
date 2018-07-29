@@ -1,0 +1,15 @@
+.main-container {
+	width: 90%;
+	max-width: 1640px;
+	height: 85vh;
+	margin: 0px auto;
+	background-color: gray;
+    overflow-y: scroll;
+}
+
+.slide {
+	width: 1169px;
+	height: 827px;
+	margin: 25px auto;
+	background-color: white;
+}
