@@ -8,8 +8,40 @@
 }
 
 .slide {
-	width: 1169px;
-	height: 827px;
+	width: 1295px;
+	height: 730px;
 	margin: 25px auto;
 	background-color: white;
+	position: relative;
+}
+.title {
+	text-transform: uppercase;
+}
+
+#slide_1 {
+	/*display: flex;*/
+}
+#slide_1 img.mainimg {
+	width: 200px;
+	top:50px;
+	left: 50px;
+	position: absolute;
+
+}
+
+#slide_1 .title{
+	padding-top: 50px;
+	text-align: left;
+	font-family: "Roboto Condensed";
+	color: cornflowerblue;
+	font-size:48px;
+	width: 40%;
+	margin: 0 auto;
+	line-height: 1.1;
+}
+#slide_3 g.highcharts-legend {
+	/*display: none;*/
+}
+.slide-chart svg {
+	width: 100%;
 }

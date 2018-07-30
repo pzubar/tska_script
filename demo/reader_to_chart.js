@@ -195,11 +195,12 @@ function reader_to_chart(){
 				chart: {
 					type: 'column',
 					animation: false,
-					width: calc_width(),
+					// width: calc_width(),
 					style: {
 						'fontFamily': '\"Roboto Condensed\"',
 						'borderRight': '1px dashed lightblue',
-					}
+					},
+					height: 600
 				},
 				
 				navigation: {

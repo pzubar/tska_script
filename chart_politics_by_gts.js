@@ -56,7 +56,8 @@ function reader_to_politics_by_gts(){
         arr_pol_sum.sort(compareSecondColumnDesc);
 
         document.getElementById("politicians_count").textContent += arr_pol_sum.length;
-        document.getElementById("pol_by_gts_split_by_input").value = "2 " + Math.ceil((arr_pol_sum.length - 2) / 2) + " " + (arr_pol_sum.length - 2 - Math.ceil((arr_pol_sum.length - 2) / 2));
+        // document.getElementById("pol_by_gts_split_by_input").value = "2 " + Math.ceil((arr_pol_sum.length - 2) / 2) + " " + (arr_pol_sum.length - 2 - Math.ceil((arr_pol_sum.length - 2) / 2));
+        document.getElementById("pol_by_gts_split_by_input").value = "2 " + "15";
 
         gt_alphaorder = Object.keys(gt_by_pol);
         gt_alphaorder.sort(sortUkrAlphabet);
@@ -263,6 +264,7 @@ function reader_to_politics_by_gts(){
 		
 	}
 	document.getElementById("pol_by_gts_split").onclick = chart_split;
+    document.getElementById("pol_by_gts_split").click();
 	chart_split = null;
 	
 	

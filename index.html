@@ -20,7 +20,16 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.10.8/xlsx.full.min.js"></script>
 
-	<script src="charts_to_slides.js"></script>
+
+	<script type="text/javascript" src="http://canvg.github.io/canvg/rgbcolor.js"></script>
+	<script type="text/javascript" src="http://canvg.github.io/canvg/StackBlur.js"></script>
+	<script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script>
+
+
+	<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+
+
+
 	<script src="pz_script.js"></script>
 	<script src="chart_politics_by_gts.js"></script>
 
@@ -38,34 +47,42 @@
 	<script src="xepOnline.jqPlugin.js"></script>
 
 	<script src="svgToPdf.js"></script>
-
+	<!--<canvas id="canvas" width="1200px" height="600px"></canvas>-->
+	<div id="buff"></div>
 	<p>
 		<input type="file" onchange="ExcelToJSON(event)" />
 		<button id="build_chart_btn">Build charts</button>
 	</p>
 
-	<a href="#" onclick="return xepOnline.Formatter.Format(['content', 'zhopa'],{render:'download', pageWidth:'1754px', pageHeight:'1240px'});">
+	<button id="cmda">Generate PDF</button>
+	<script src="charts_to_slides.js"></script>
+	<!--<a href="#" onclick="return xepOnline.Formatter.Format(['slide_1', 'slide_2', 'printme'],{pageWidth:'1295px', pageHeight:'730px'});">-->
+	<a href="#" onclick="return xepOnline.Formatter.Format(['slide_2'],{pageWidth:'1295px', pageHeight:'730px'});">
 		<img src="button-prin.png" width="50px">
 	</a>
 
 
 	<div class="main-container">
-		<div class="slide" id="slide_1">
-			<div class="subtitle">01.02.2018</div>
-            <div class="title">Порядок денний ключових політичних спікерів</div>
-		</div>
+		<!--<div class="slide" id="slide_1">-->
+			<!--&lt;!&ndash;<img src="https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg" alt="" class="mainimg">&ndash;&gt;-->
+			<!--&lt;!&ndash;<div class="subtitle">01.02.2018</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="title">Порядок денний ключових політичних спікерів</div>&ndash;&gt;-->
+			<!--&lt;!&ndash;<div class="slide-chart"></div>&ndash;&gt;-->
+		<!--</div>-->
         <div class="slide" id="slide_2">
-            <div class="subtitle">01.02.2018</div>
-            <div class="title">Порядок денний ключових політичних спікерів</div>
+            <!--<div class="subtitle">Title</div>-->
+            <!--<div class="title">aa</div>-->
+			<div class="slide-chart"><canvas width="1200px" height="600px"></canvas></div>
         </div>
 	</div>
+	<!--<canvas id="canvas" width="1200px" height="600px"></canvas>-->
 
-
-
+	<!--<img id="source" src="https://mdn.mozillademos.org/files/5397/rhino.jpg"-->
+		 <!--width="300" height="227">-->
 	<p>Sheets:</p>
 	<ul id="gt_ul"></ul>
 
-	<div id="container" style="min-width: 310px; max-width: 1640px; width: 85%; height: 700px; margin: 0 auto"></div>
+	<div id="container" style="min-width: 310px; width: 1200px;margin: 0 auto"></div>
 
 	<div class="gt_by_pol_chart_div_asses">
 		<h3 style="text-align: center; font-family: 'Roboto Condensed'">Тематика заяв ключових політиків</h3>
@@ -77,10 +94,10 @@
 		</p>
 		<button class="toggle_title">Toggle title</button>
 	</div>
-
+	<!---->
 	<div class="gt_by_pol_chart_div">
 		<div style="text-align: center;">
-			<div class="gt_by_pol_chart_container" style="width: 1200px; height: 250px; margin: 0 auto; border: 1px dashed lightgray"></div>
+			<div class="gt_by_pol_chart_container" style="width: 1200px;  margin: 0 auto; border: 1px dashed lightgray"></div>
 		</div>
 		<p>Fix and export:
 			<button class="export_stacked_bar_btn">Export chart</button>
@@ -118,7 +135,6 @@
 		<span>&emsp;</span>
 		<button class="scroll_to_top">^</button>
 	</div>
-
 
 </body>
 </html>
