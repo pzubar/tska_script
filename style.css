@@ -45,3 +45,11 @@
 .slide-chart svg {
 	width: 100%;
 }
+
+#slides > canvas {
+	width: 1295px;
+	display: block;
+	height: 730px;
+	margin: 25px auto;
+	background-color: white;
+}

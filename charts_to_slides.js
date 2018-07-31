@@ -1,6 +1,9 @@
 
-var g_svg;
-var g_canvas;
+var g_svg = [];
+var g_canvas = [];
+var slide_i = 0;
+var svg_i = 0;
+var slides = [];
 
 function put_logo(ctx, canvas) {
     var image = new Image();
@@ -9,7 +12,7 @@ function put_logo(ctx, canvas) {
     image.onload = function() {
         ctx.drawImage(image, canvas.width - image.width - 5, 5, image.width / 2, image.height / 2);
     };
-alert(canvas.width);
+// alert(canvas.width);
 }
 
 function put_title(title, ctx) {
@@ -18,46 +21,126 @@ function put_title(title, ctx) {
 
     var res = title.toUpperCase();
 
-    ctx.fillText(res,0,30);
-
+    ctx.fillText(res,15,30);
 }
 
-function copy_canvas() {
-    var cts_slide = document.getElementById('slide_2').children[0];
+function put_chart(destinationCtx) {
+    var image;
 
-    var destinationCanvas = cts_slide.children[0];//document.createElement('canvas');
-    var image, destinationCtx;
-    destinationCanvas.style.width = '1200px';
-//create the image
     image = new Image();
 
-//get the base64 data
-    image.src = g_canvas.toDataURL('image/png');
+    image.src = g_canvas[svg_i].toDataURL('image/png');
 
-//get the destination context
+    // destinationCtx = destinationCanvas.getContext('2d');
+
+    // put_title("Динаміка уваги до ключових тем", c);
+
+    // alert(g_canvas[svg_i].height);
+
+    image.onload = function() {
+            destinationCtx.drawImage(image, 15, 150);
+    };
+    svg_i++;
+}
+
+function add_keypolitics_slides(div) {
+    // alert(slide_i);
+    var slide = slides[slide_i];
+    var ctx = slide.getContext('2d');
+    var title = "Тематика заяв ключових політиків";
+
+    put_title(title, ctx);
+    g_svg[svg_i] = div.getElementsByTagName("svg")[0].parentElement.innerHTML;
+    g_canvas[svg_i] = document.createElement('canvas');
+    canvg(g_canvas[svg_i], g_svg[svg_i]);
+    put_chart(ctx);
+    put_logo(ctx, slide);
+    slide_i++;
+}
+
+function  add_simple_charts(div) {
+    var slide = slides[slide_i];
+    var ctx = slide.getContext('2d');
+    var title = div.children[0].innerHTML;//getElementsByTagName("h3").innerHTML;
+    alert(title);
+    put_title(title, ctx);
+    g_svg[svg_i] = div.getElementsByTagName("svg")[0].parentElement.innerHTML;
+    g_canvas[svg_i] = document.createElement('canvas');
+    canvg(g_canvas[svg_i], g_svg[svg_i]);
+    put_chart(ctx);
+    put_logo(ctx, slide);
+
+
+    slide_i++;
+}
+
+function add_bigtopics_slide(canvas) {
+
+    var destinationCanvas = slides[1];
+    var image, destinationCtx;
+
+    image = new Image();
+
+    image.src = canvas.toDataURL('image/png');
+
     destinationCtx = destinationCanvas.getContext('2d');
-
-//copy the data
 
     put_title("Динаміка уваги до ключових тем", destinationCtx);
     put_logo(destinationCtx, destinationCanvas);
-    image.onload = function() { destinationCtx.drawImage(image, 15, 150);};
 
+    image.onload = function() {
+        destinationCtx.drawImage(image, 15, 150);
+    };
+
+    slide_i++;
+}
+
+function add_cover() {
+    var slide = slides[0];
+    var ctx = slide.getContext('2d');
+    var title = "Порядок денний ключових політичних спікерів";
+
+    ctx.font = "48px Roboto Condensed";
+    ctx.fillStyle = '#5F9EBB';
+    ctx.fillText(title,50,50);
+    slide_i++;
 }
 
 function  charts_to_slides() {
-    var sliders_container = document.getElementsByClassName('main-container')[0];
+    var slides_container = document.getElementById('slides');
+
+    var slidesno = document.getElementsByClassName('gt_by_pol_chart_div').length;
+    slidesno += document.getElementsByClassName('chart_div').length;
+    slidesno += 2; //title + second stile
+
+    var slide = slides_container.children[0].children[0];
+
+    for (var i = 0; i < slidesno; i++) {
+        slides.push(slide.cloneNode(true));
+        slides_container.appendChild(slides[i]);
+    }
+
+    add_cover(slides_container);
 
 
     var cts_container = document.getElementById('container');
 
-    g_svg = cts_container.childNodes[0].innerHTML;
+    g_svg[svg_i] = cts_container.childNodes[0].innerHTML;
 
-    g_canvas = document.createElement('canvas');
-    canvg(g_canvas, g_svg);
-    copy_canvas();
+    g_canvas[svg_i] = document.createElement('canvas');
+    canvg(g_canvas[svg_i], g_svg[svg_i]);
+    add_bigtopics_slide(g_canvas[svg_i]);
+    svg_i++;
 
+    var keypolitics = document.getElementsByClassName('gt_by_pol_chart_container');
+    for (var i = 0; i < keypolitics.length; i++) {
+        add_keypolitics_slides(keypolitics[i]);
+    }
 
+    var simple_charts = document.getElementsByClassName('chart_div');
+    for (var i = 0; i < simple_charts.length; i++) {
+        add_simple_charts(simple_charts[i]);
+    }
 }
 
 
