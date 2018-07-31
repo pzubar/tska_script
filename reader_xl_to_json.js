@@ -28,7 +28,8 @@ var ExcelToJSON = function(e) {
 		reader_to_politics_by_gts();
         // charts_to_slides();
         // chart_split();
-        setTimeout(charts_to_slides, 1000);
+        // setTimeout(charts_to_slides, 1000);
+        setTimeout(make_slides, 1000);
 	};
 
 	reader.onerror = function(ex) {

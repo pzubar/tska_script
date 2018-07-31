@@ -82,8 +82,8 @@ function pz_script() {
         plotOptions: {
             area: {
                 stacking: 'normal',
-                lineColor: '#ffffff',
-                lineWidth: 1,
+                // lineColor: '#ffffff',
+                // lineWidth: 1,
                 marker: {
                     enabled: false,
                     lineWidth: 1,

@@ -5,6 +5,27 @@
 	<title>TSKA-SCRIPT</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+
+
+	<style type="text/css" media="print">
+		.no-print { display: none; }
+		.main-container {
+			height: auto!important;
+		}
+		.print { display: block; }
+		.pagebreak { page-break-before: always; }
+		.slide {
+			margin: 0px!important;
+			border: 1px solid white;
+		}
+		p {
+			padding-top: 0px;
+		}
+		.slide {
+			overflow: visible;
+		}
+	</style>
+
 </head>
 <body>
 	<link rel="stylesheet" href="style.css">
@@ -48,47 +69,53 @@
 
 	<script src="svgToPdf.js"></script>
 	<!--<canvas id="canvas" width="1200px" height="600px"></canvas>-->
+	<div  class="no-print">
 	<div id="buff"></div>
 	<p>
 		<input type="file" onchange="ExcelToJSON(event)" />
-		<button id="build_chart_btn">Build charts</button>
+		<!--<button id="build_chart_btn">Build charts</button>-->
 	</p>
 
-	<button id="cmda">Generate PDF</button>
+	<!--<button id="cmda">Generate PDF</button>-->
+		<button onclick="window.print();">PDF IT</button>
 	<script src="charts_to_slides.js"></script>
+	<script src="to_slides_vector.js"></script>
 	<!--<a href="#" onclick="return xepOnline.Formatter.Format(['slide_1', 'slide_2', 'printme'],{pageWidth:'1295px', pageHeight:'730px'});">-->
-	<!--<a href="#" onclick="return xepOnline.Formatter.Format(['slide_2'],{pageWidth:'1295px', pageHeight:'730px'});">-->
-		<!--<img src="button-prin.png" width="50px">-->
-	<!--</a>-->
-
-
-	<div class="main-container">
-		<!--<div class="slide" id="slide_1">-->
-			<!--&lt;!&ndash;<img src="https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg" alt="" class="mainimg">&ndash;&gt;-->
-			<!--&lt;!&ndash;<div class="subtitle">01.02.2018</div>&ndash;&gt;-->
-            <!--&lt;!&ndash;<div class="title">Порядок денний ключових політичних спікерів</div>&ndash;&gt;-->
-			<!--&lt;!&ndash;<div class="slide-chart"></div>&ndash;&gt;-->
-		<!--</div>-->
-		<div id="slides">
-			<div style="display: none">
-				<canvas width="1295px" height="730px"></canvas>
-			</div>
-
-		</div>
-		<!--<div class="slide" id="slide_2">-->
-            <!--&lt;!&ndash;<div class="subtitle">Title</div>&ndash;&gt;-->
-            <!--&lt;!&ndash;<div class="title">aa</div>&ndash;&gt;-->
-			<!--<div class="slide-chart"><canvas width="1200px" height="600px"></canvas></div>-->
-        <!--</div>-->
-
+	<a href="#" onclick="func()">
+		<img src="button-prin.png" width="50px">
+	</a>
 	</div>
+	<div id="slides" class="print">
+		<div style="display: none">
+			<canvas width="1295px" height="730px"></canvas>
+		</div>
+		<div style="display: none">
+			<div class="slide pagebreak"></div>
+		</div>
+	</div>
+	<!--<div class="main-container no-print">-->
 
+		<!--&lt;!&ndash;<div class="slide" id="slide_1">&ndash;&gt;-->
+			<!--&lt;!&ndash;&lt;!&ndash;<img src="https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg" alt="" class="mainimg">&ndash;&gt;&ndash;&gt;-->
+			<!--&lt;!&ndash;&lt;!&ndash;<div class="subtitle">01.02.2018</div>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<div class="title">Порядок денний ключових політичних спікерів</div>&ndash;&gt;&ndash;&gt;-->
+			<!--&lt;!&ndash;&lt;!&ndash;<div class="slide-chart"></div>&ndash;&gt;&ndash;&gt;-->
+		<!--&lt;!&ndash;</div>&ndash;&gt;-->
+		<!--
+		<!--&lt;!&ndash;<div class="slide" id="slide_2">&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<div class="subtitle">Title</div>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<div class="title">aa</div>&ndash;&gt;&ndash;&gt;-->
+			<!--&lt;!&ndash;<div class="slide-chart"><canvas width="1200px" height="600px"></canvas></div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+	<!--</div>-->
+	<!--<div  class="no-print">-->
 	<p>Sheets:</p>
 	<ul id="gt_ul"></ul>
 
 	<div id="container" style="min-width: 310px; width: 1200px;margin: 0 auto"></div>
 
-	<div class="gt_by_pol_chart_div_asses">
+	<div class="gt_by_pol_chart_div_asses no-print">
 		<h3 style="text-align: center; font-family: 'Roboto Condensed'">Тематика заяв ключових політиків</h3>
 		<div id="gt_by_pol_chart_container_asses" style="width: 1200px; height: 600px; margin: 0 auto; border: 1px dashed lightgray"></div>
 		<p id="politicians_count">Всього політиків: </p>
@@ -98,9 +125,9 @@
 		</p>
 		<button class="toggle_title">Toggle title</button>
 	</div>
-	<div class="gt_by_pol_chart_div">
+	<div class="gt_by_pol_chart_div no-print">
 		<div style="text-align: center;">
-			<div class="gt_by_pol_chart_container" style="width: 1200px;  margin: 0 auto; border: 1px dashed lightgray"></div>
+			<div class="gt_by_pol_chart_container" style="max-width: 1200px; max-height: 600px; margin: 0 auto; border: 1px dashed lightgray"></div>
 		</div>
 		<p>Fix and export:
 			<button class="export_stacked_bar_btn">Export chart</button>
@@ -113,31 +140,34 @@
 		</p>
 	</div>
 
-	<div class="chart_div">
+	<div class="chart_div no-print">
 		<h3 class="gt_h3" style="text-align: center;">Gross topic 1</h3>
 		<div class="chart_container" style="min-width: 310px; width: 1200px; height: 400px; margin: 0 auto; border: 1px dashed lightgray"></div>
-		<p>Fix and export:
+		<div class="noprint">
+		<p class="noprint">Fix and export:
 			<button class="export_btn">Export chart</button>
 		</p>
-		<span>
+		<span class="noprint">
 			<b>Bar #:</b>
 		</span>
-		<input type="text" class="bar_n" style="width: 3em" />
-		<span>
+		<input class="noprint" type="text" class="bar_n" style="width: 3em" />
+		<span class="noprint">
 			<b>X:</b>
 		</span>
-		<input type="number" class="x_fix" style="width: 3em" />
-		<span>
+		<input class="noprint" type="number" class="x_fix" style="width: 3em" />
+		<span class="noprint">
 			<b>Y:</b>
 		</span>
-		<input type="number" class="y_fix" style="width: 3em" />
-		<button class="move_annotations_btn">Move</button> | Scale by
-		<select class="select_scalebygt"></select>
-		<button class="apply_scalebygt">Scale</button> |
-		<button class="toggle_title">Toggle title</button>
-		<span>&emsp;</span>
-		<button class="scroll_to_top">^</button>
+		<input class="noprint" type="number" class="y_fix" style="width: 3em" />
+		<button class="noprint move_annotations_btn">Move</button> | Scale by
+		<select class="noprint select_scalebygt"></select>
+		<button class="noprint apply_scalebygt">Scale</button> |
+		<button class="noprint toggle_title">Toggle title</button>
+		<span class="noprint">&emsp;</span>
+		<button class="noprint scroll_to_top">^</button>
+		</div>
 	</div>
-
+	<img id="logo" src="mainimage.png">
+	<!--</div>-->
 </body>
 </html>

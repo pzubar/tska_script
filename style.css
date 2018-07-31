@@ -2,17 +2,19 @@
 	width: 90%;
 	max-width: 1640px;
 	height: 85vh;
-	margin: 0px auto;
+
+	/*margin: 0px auto;*/
 	background-color: gray;
     overflow-y: scroll;
 }
 
 .slide {
-	width: 1295px;
-	height: 730px;
+	width: 1285px;
+	height: 720px;
 	margin: 25px auto;
 	background-color: white;
 	position: relative;
+	border: 1px solid black;
 }
 .title {
 	text-transform: uppercase;
@@ -36,7 +38,7 @@
 	color: cornflowerblue;
 	font-size:48px;
 	width: 40%;
-	margin: 0 auto;
+	/*margin: 0 auto;*/
 	line-height: 1.1;
 }
 #slide_3 g.highcharts-legend {
@@ -46,10 +48,26 @@
 	width: 100%;
 }
 
-#slides > canvas {
-	width: 1295px;
-	display: block;
-	height: 730px;
-	margin: 25px auto;
-	background-color: white;
+.slide svg {
+	border-right: 1px solid white;
+}
+/*#slides > canvas {*/
+	/*width: 1285px;*/
+	/*display: block;*/
+	/*height: 720px;*/
+	/*!*margin: 25px auto;*!*/
+	/*background-color: white;*/
+/*}*/
+
+/*#slides > div {*/
+	/*width: 1295px;*/
+	/*display: block;*/
+	/*height: 730px;*/
+	/*margin: 25px auto;*/
+	/*background-color: white;*/
+/*}*/
+@page {
+	size: 1305px 740px;
+	margin: 0px;
+	padding: 0px;
 }
