@@ -5,6 +5,8 @@ var slide_i = 0;
 var svg_i = 0;
 var slides = [];
 
+var res_cnv = [];
+
 function put_logo(ctx, canvas) {
     var image = new Image();
     image.src = "img/top-logo.png";
@@ -62,7 +64,7 @@ function  add_simple_charts(div) {
     var slide = slides[slide_i];
     var ctx = slide.getContext('2d');
     var title = div.children[0].innerHTML;//getElementsByTagName("h3").innerHTML;
-    alert(title);
+    // alert(title);
     put_title(title, ctx);
     g_svg[svg_i] = div.getElementsByTagName("svg")[0].parentElement.innerHTML;
     g_canvas[svg_i] = document.createElement('canvas');
@@ -116,8 +118,12 @@ function  charts_to_slides() {
     var slide = slides_container.children[0].children[0];
 
     for (var i = 0; i < slidesno; i++) {
+        //
+
         slides.push(slide.cloneNode(true));
         slides_container.appendChild(slides[i]);
+        // slides[i].crossOrigin = 'anonymous';
+        slides[i].setAttribute("crossorigin", 'anonymous');
     }
 
     add_cover(slides_container);
@@ -154,9 +160,9 @@ function  charts_to_slides() {
 $('#cmda').click(function () {
 
     // var svg = document.getElementById('svg-container').innerHTML;
-    var svg = g_svg;
-    if (svg)
-        svg = svg.replace(/\r?\n|\r/g, '').trim();
+    // var svg = g_svg;
+    // if (svg)
+        // svg = svg.replace(/\r?\n|\r/g, '').trim();
     //
     //
     var doc = new jsPDF('l', 'px', [1295,730]);
@@ -168,9 +174,17 @@ $('#cmda').click(function () {
     // var imgData = canvas.toDataURL('image/png', 1.0);
     // Generate PDF
     // var doc = new jsPDF('l', 'px', 'a4');
+    for (var i = 0; i < slides.length; i++)
+    {
+        // var img = new Image();
 
+        var imgData = slides[i].toDataURL('image/png', 1.0);
+        doc.addImage(imgData, 'PNG', 0, 0, slides[i].width, slides[i].height);
+        doc.addPage();
+    }
 
     // doc.addImage(imgData, 'PNG', 40, 40, canvas.width, canvas.height);
+
     doc.save('test.pdf');
     // doc.output("dataurlnewwindow");
 });
