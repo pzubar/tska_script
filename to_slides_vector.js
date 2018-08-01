@@ -126,7 +126,7 @@ function copy_plain_charts_outer(elem) {
     var div = document.createElement('div');
     div.className = 'chart_container_slide';
     div.innerHTML = buf;
-    slide.appendChild(div);
+    slide.appendChild(elem);
     slide_i++;
 }
 
@@ -173,13 +173,24 @@ function make_slides() {
 
     add_bigtopics_slide();
 
-    var keypolitics = document.getElementsByClassName('gt_by_pol_chart_container');
+    // var keypolitics = document.getElementsByClassName('gt_by_pol_chart_container');
+    // for (var i = 0; i < keypolitics.length; i++) {
+    //     copy_plain_charts_inner(keypolitics[i]);
+    // }
+
+
+    var keypolitics = document.getElementsByClassName('gt_by_pol_chart_div_asses');
     for (var i = 0; i < keypolitics.length; i++) {
-        copy_plain_charts_inner(keypolitics[i]);
+        copy_plain_charts_outer(keypolitics[i]);
+    }
+
+    var keypolitics = document.getElementsByClassName('gt_by_pol_chart_div');
+    for (var i = 0; i < keypolitics.length; i++) {
+        copy_plain_charts_outer(keypolitics[i]);
     }
 
 
-    var chartdiv = document.getElementsByClassName('chart_container');
+    var chartdiv = document.getElementsByClassName('chart_div');
     for (var i = 0; i < chartdiv.length; i++) {
         copy_plain_charts_outer(chartdiv[i]);
     }

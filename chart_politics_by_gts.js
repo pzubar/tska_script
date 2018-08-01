@@ -57,7 +57,7 @@ function reader_to_politics_by_gts(){
 
         document.getElementById("politicians_count").textContent += arr_pol_sum.length;
         // document.getElementById("pol_by_gts_split_by_input").value = "2 " + Math.ceil((arr_pol_sum.length - 2) / 2) + " " + (arr_pol_sum.length - 2 - Math.ceil((arr_pol_sum.length - 2) / 2));
-        document.getElementById("pol_by_gts_split_by_input").value = "2 " + "15";
+        document.getElementById("pol_by_gts_split_by_input").value = "2 " + Math.ceil((arr_pol_sum.length - 2));
 
         gt_alphaorder = Object.keys(gt_by_pol);
         gt_alphaorder.sort(sortUkrAlphabet);

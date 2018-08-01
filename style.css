@@ -165,3 +165,6 @@ body {
 	display: flex;
 	justify-content: space-around;
 }
+.gt_h3 {
+	display: none;
+}

@@ -144,9 +144,9 @@
 
 	<div class="no-print" id="container" style="min-width: 310px; width: 1200px;margin: 0 auto"></div>
 
-	<div class="gt_by_pol_chart_div_asses no-print">
+	<div class="gt_by_pol_chart_div_asses">
 		<h3 style="text-align: center; font-family: 'Roboto Condensed'">Тематика заяв ключових політиків</h3>
-		<div id="gt_by_pol_chart_container_asses" style="width: 1200px; height: 600px; margin: 0 auto; border: 1px dashed lightgray"></div>
+		<div id="gt_by_pol_chart_container_asses" style="width: 1200px; height: 400px; margin: 0 auto; border: 1px dashed lightgray"></div>
 		<p id="politicians_count">Всього політиків: </p>
 		<p>Split by:
 			<input id="pol_by_gts_split_by_input" type="text" />
@@ -154,14 +154,14 @@
 		</p>
 		<button class="toggle_title">Toggle title</button>
 	</div>
-	<div class="gt_by_pol_chart_div no-print">
+	<div class="gt_by_pol_chart_div">
 		<div style="text-align: center;">
 			<div class="gt_by_pol_chart_container" style="max-width: 1200px; max-height: 600px; margin: 0 auto; border: 1px dashed lightgray"></div>
 		</div>
-		<p>Fix and export:
+		<p class="no-print">Fix and export:
 			<button class="export_stacked_bar_btn">Export chart</button>
 		</p>
-		<p>Set width %:
+		<p class="no-print">Set width %:
 			<input class="set_stacked_bar_width_input" type="text" style="width: 3em" value="50" />
 			<button class="set_stacked_bar_width_btn">Set</button>
 			<span>&emsp;</span>
@@ -169,33 +169,34 @@
 		</p>
 	</div>
 
-	<div class="chart_div no-print">
-		<h3 class="gt_h3" style="text-align: center;">Gross topic 1</h3>
+	<div class="chart_div">
+		<h3 class="gt_h3 no-print" style="text-align: center;">Gross topic 1</h3>
 		<div class="chart_container" style="min-width: 310px; width: 1200px; height: 400px; margin: 0 auto; border: 1px dashed lightgray"></div>
-		<p class="noprint">Fix and export:
-			<button class="export_btn">Export chart</button>
-		</p>
-			<b>Bar #:</b>
+		<!--<p class="no-print">Fix and export:-->
+			<!--<button class="export_btn">Export chart</button>-->
+		<!--</p>-->
+			<b class="no-print">Bar #:</b>
 		</span>
-		<input class="noprint" type="text" class="bar_n" style="width: 3em" />
-		<span class="noprint">
-			<b>X:</b>
+		<input class="no-print" type="text" class="bar_n" style="width: 3em" />
+		<span class="no-print">
+			<b class="no-print">X:</b>
 		</span>
-		<input class="noprint" type="number" class="x_fix" style="width: 3em" />
-		<span class="noprint">
+		<input class="no-print" type="number" class="x_fix" style="width: 3em" />
+		<span class="no-print">
 			<b>Y:</b>
 		</span>
-		<input class="noprint" type="number" class="y_fix" style="width: 3em" />
-		<button class="noprint move_annotations_btn">Move</button> | Scale by
-		<select class="noprint select_scalebygt"></select>
-		<button class="noprint apply_scalebygt">Scale</button> |
-		<button class="noprint toggle_title">Toggle title</button>
-		<span class="noprint">&emsp;</span>
-		<button class="noprint scroll_to_top">^</button>
-		<span>Додати до:</span>
-		<select class="noprint add-to-chart"></select>
-		<button class="noprint apply-add-to-chart">Add</button> |
-		<button class="noprint remove-slide">ВИДАЛИТИ СЛАЙД</button>
+		<input class="no-print" type="number" class="y_fix" style="width: 3em" />
+		<button class="no-print move_annotations_btn">Move</button>
+		<p class="no-print">| Scale by</p>
+		<select class="no-print select_scalebygt"></select>
+		<button class="no-print apply_scalebygt">Scale</button>
+		<button class="no-print toggle_title">Toggle title</button>
+		<span class="no-print">&emsp;</span>
+		<button class="no-print scroll_to_top">^</button>
+		<span class="no-print">Додати до:</span>
+		<select class="no-print add-to-chart"></select>
+		<button class="no-print apply-add-to-chart">Add</button>
+		<button class="no-print remove-slide">ВИДАЛИТИ СЛАЙД</button>
 	</div>
 	<!--<img id="logo" src="img/mainimage.png">-->
 	<!--</div>-->
