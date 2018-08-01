@@ -16,11 +16,12 @@
 		.pagebreak { page-break-before: always; }
 		.slide {
 			margin: 0px!important;
-			border: 1px solid white;
+			border: 0px solid white!important;
 		}
 		.cover-title {
 			color: #6dc8eb !important;
 		}
+
 		p {
 			padding-top: 0px;
 		}
@@ -80,7 +81,7 @@
 
 	<div id="navbar" class="no-print">
 		<a href="#home"><input type="file" onchange="ExcelToJSON(event)" /></a>
-		<a href="#news" onclick="make_slides();">Сформувати презентацію</a>
+		<!--<a href="#news" onclick="make_slides();">Сформувати презентацію</a>-->
 		<a href="#contact" onclick="window.print();">Завантажити презентацію</a>
 	</div>
 
