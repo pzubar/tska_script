@@ -131,6 +131,55 @@ function upd_vis(){
 	for(i in a){
 		a[i].onclick = scale_by_gt;
 	}
+
+    function add_to_ch(){
+        var curtitle = this.parentNode.querySelector(".gt_h3");
+		var cur = this.parentNode.querySelector(".highcharts-container");//.textContent;
+		var addto = this.parentNode.querySelector(".add-to-chart").value;
+        var titles = document.getElementsByClassName('gt_h3');
+        var addto_container;
+
+        for (var i = 0; i < titles.length; i++) {
+            if (titles[i].textContent == addto)
+			{
+                titles[i].textContent += " та " + curtitle.textContent;
+                addto_container = titles[i].parentNode;
+                break ;
+			}
+        }
+
+		addto_container = addto_container.getElementsByClassName('chart_container');
+        addto_container = addto_container[0];
+		// alert(addto_container.children[0].id);
+        addto_container.appendChild(cur.cloneNode(true));
+        // document.body.appendChild(cur.cloneNode(true));
+		// alert(gt);
+        // var scalebygt =
+        // var chart = charts[gt];
+        // var scalebychart = charts[scalebygt];
+        //
+        // chart.update({
+        //     yAxis: {max: scalebychart.yAxis[0].max},
+        //     chart: {
+        //         marginTop: scalebychart.margin[0],
+        //         marginBottom: scalebychart.marginBottom
+        //     },
+        //     plotOptions: {series: {
+        //         pointWidth: Math.ceil(scalebychart.series[0].columnMetrics.width)
+        //     }}
+        // });
+        // fixup_labels_above_xaxis(gt);
+    }
+    a = document.getElementsByClassName("apply_scalebygt");
+    for(i in a){
+        a[i].onclick = scale_by_gt;
+    }
+
+    var pz = document.getElementsByClassName("apply-add-to-chart");
+    for(i in pz){
+        // a[i].onclick = scale_by_gt;
+        pz[i].onclick = add_to_ch;
+    }
 	
 	a = function(){
 		var b = document.getElementsByClassName("scroll_to_top");

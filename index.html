@@ -42,14 +42,15 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.10.8/xlsx.full.min.js"></script>
 
 
-	<script type="text/javascript" src="http://canvg.github.io/canvg/rgbcolor.js"></script>
-	<script type="text/javascript" src="http://canvg.github.io/canvg/StackBlur.js"></script>
-	<script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script>
+	<!--<script type="text/javascript" src="http://canvg.github.io/canvg/rgbcolor.js"></script>-->
+	<!--<script type="text/javascript" src="http://canvg.github.io/canvg/StackBlur.js"></script>-->
+	<!--<script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script>-->
 
 
-	<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+	<!--<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>-->
 
-
+	<!--<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>-->
+	<!--<script src="xepOnline.jqPlugin.js"></script>-->
 
 	<script src="pz_script.js"></script>
 	<script src="chart_politics_by_gts.js"></script>
@@ -62,32 +63,60 @@
 	<script src="reader_xl_to_json.js"></script>
 	<!-- 0) Has filereader onload callback that calls funcs above -->
 
+	<!--<script src="charts_to_slides.js"></script>-->
 
-	<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+	<script src="to_slides_vector.js"></script>
 
-	<script src="xepOnline.jqPlugin.js"></script>
-
-	<script src="svgToPdf.js"></script>
+	<!--<script src="svgToPdf.js"></script>-->
 	<!--<canvas id="canvas" width="1200px" height="600px"></canvas>-->
+
+	<div id="navbar" class="no-print">
+		<a href="#home"><input type="file" onchange="ExcelToJSON(event)" /></a>
+		<a href="#news" onclick="make_slides();">Сформувати презентацію</a>
+		<a href="#contact" onclick="window.print();">Завантажити презентацію</a>
+	</div>
+
 	<div  class="no-print">
 	<div id="buff"></div>
 	<p>
-		<input type="file" onchange="ExcelToJSON(event)" />
+		<!--<input type="file" onchange="ExcelToJSON(event)" />-->
 		<!--<button id="build_chart_btn">Build charts</button>-->
 	</p>
 
 	<!--<button id="cmda">Generate PDF</button>-->
-		<button onclick="window.print();">PDF IT</button>
-	<script src="charts_to_slides.js"></script>
-	<script src="to_slides_vector.js"></script>
+		<!--<button onclick="window.print();">PDF IT</button>-->
+
+
 	<!--<a href="#" onclick="return xepOnline.Formatter.Format(['slide_1', 'slide_2', 'printme'],{pageWidth:'1295px', pageHeight:'730px'});">-->
-	<a href="#" onclick="func()">
-		<img src="button-prin.png" width="50px">
-	</a>
+	<!--<a href="#" onclick="func()">-->
+		<!--<img src="button-prin.png" width="50px">-->
+	<!--</a>	<!--<a href="#" onclick="func()">-->
+		<!--<img src="button-prin.png" width="50px">-->
+	<!--</a>-->
 	</div>
+
 	<div id="slides" class="print">
-		<div style="display: none">
-			<canvas width="1295px" height="730px"></canvas>
+		<div class="slide pagebreak cover">
+			<div class="cover-img">
+				<img  src="img/mainimage.png" alt="">
+			</div>
+			<div class="cover-info">
+				<div class="textpart">
+					<div class="cover-subtitle">Тут буде дата</div>
+					<div class="cover-title">ПОРЯДОК ДЕННИЙ КЛЮЧОВИХ ПОЛІТИЧНИХ СПІКЕРІВ</div>
+				</div>
+			</div>
+			<div class="top-part">
+				<div class="top-triangles">
+					<img src="img/top-triangles.png" alt="">
+				</div>
+				<div class="top-logo">
+					<img src="img/top-logo.png" alt="">
+					<img src="img/top-mediaportret.png" alt="">
+
+				</div>
+
+			</div>
 		</div>
 		<div style="display: none">
 			<div class="slide pagebreak"></div>
@@ -110,10 +139,10 @@
 
 	<!--</div>-->
 	<!--<div  class="no-print">-->
-	<p>Sheets:</p>
-	<ul id="gt_ul"></ul>
+	<p class="no-print">Sheets:</p>
+	<ul class="no-print" id="gt_ul"></ul>
 
-	<div id="container" style="min-width: 310px; width: 1200px;margin: 0 auto"></div>
+	<div class="no-print" id="container" style="min-width: 310px; width: 1200px;margin: 0 auto"></div>
 
 	<div class="gt_by_pol_chart_div_asses no-print">
 		<h3 style="text-align: center; font-family: 'Roboto Condensed'">Тематика заяв ключових політиків</h3>
@@ -143,11 +172,9 @@
 	<div class="chart_div no-print">
 		<h3 class="gt_h3" style="text-align: center;">Gross topic 1</h3>
 		<div class="chart_container" style="min-width: 310px; width: 1200px; height: 400px; margin: 0 auto; border: 1px dashed lightgray"></div>
-		<div class="noprint">
 		<p class="noprint">Fix and export:
 			<button class="export_btn">Export chart</button>
 		</p>
-		<span class="noprint">
 			<b>Bar #:</b>
 		</span>
 		<input class="noprint" type="text" class="bar_n" style="width: 3em" />
@@ -165,9 +192,32 @@
 		<button class="noprint toggle_title">Toggle title</button>
 		<span class="noprint">&emsp;</span>
 		<button class="noprint scroll_to_top">^</button>
-		</div>
+		<span>Додати до:</span>
+		<select class="noprint add-to-chart"></select>
+		<button class="noprint apply-add-to-chart">Add</button> |
+		<button class="noprint remove-slide">ВИДАЛИТИ СЛАЙД</button>
 	</div>
-	<img id="logo" src="mainimage.png">
+	<!--<img id="logo" src="img/mainimage.png">-->
 	<!--</div>-->
+
+<script>
+    // When the user scrolls the page, execute myFunction
+    window.onscroll = function() {myFunction()};
+
+    // Get the navbar
+    var navbar = document.getElementById("navbar");
+
+    // Get the offset position of the navbar
+    var sticky = navbar.offsetTop;
+
+    // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    function myFunction() {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+</script>
 </body>
 </html>

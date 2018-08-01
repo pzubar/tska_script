@@ -74,18 +74,18 @@ function add_bigtopics_slide() {
     // var div = document.createElement('div');
 
     var container = document.getElementById('container');
-    var svg_element = container;//.getElementsByTagName("svg")[0];//.parentElement;//.cloneNode(true);
+    var svg_element = container.getElementsByTagName("svg")[0];//.parentElement;//.cloneNode(true);
 
 
-    var logo = new Image();
-
-    logo.onload = function () {
-        logo.width = "16";
-        logo.height = "16";
-        slide.appendChild(logo);
-    }
-
-    logo.src = logo64;
+    // var logo = new Image();
+    //
+    // logo.onload = function () {
+    //     logo.width = "16";
+    //     logo.height = "16";
+    //     slide.appendChild(logo);
+    // }
+    //
+    // logo.src = logo64;
 
     // slide.setAttribute("id", "printme");
     // div.appendChild(svg_element);
@@ -108,14 +108,28 @@ function add_cover() {
     slide_i++;
 }
 
-function copy_plain_charts(elem) {
+function copy_plain_charts_inner(elem) {
     var slide = slides[slide_i];
-    create_slide_title("TITLE HERE", slide);
-    var buf = elem.children[0].innerHTML;
+    create_slide_title("Тематика заяв ключових політиків", slide);
+    var buf = elem.innerHTML;
     slide.innerHTML += buf;
-    // slide.appendChild(elem.cloneNode(true));
     slide_i++;
 }
+
+
+function copy_plain_charts_outer(elem) {
+    var slide = slides[slide_i];
+    var title = elem.parentNode.querySelector(".gt_h3").textContent;
+
+    create_slide_title(title, slide);
+    var buf = elem.innerHTML;
+    var div = document.createElement('div');
+    div.className = 'chart_container_slide';
+    div.innerHTML = buf;
+    slide.appendChild(div);
+    slide_i++;
+}
+
 
 function make_slides() {
 
@@ -131,6 +145,21 @@ function make_slides() {
 
     var slide = slides_container.children[1].children[0];
 
+    if (print_divs.length > 0) {
+        for (var i = 0; i < print_divs.length; i++) {
+            var elem = document.getElementById(print_divs[i]);
+            elem.parentNode.removeChild(elem);
+            // slides[i].parentNode.removeChild(slides[i]);
+            // slides.slice(slides[i], 1);
+            // alert(slides[i].id);
+            // slides[i].remove();
+        }
+        // alert("a");
+        // slides = null;
+        print_divs.length = 0;
+        // return ;
+    }
+
     for (var i = 0; i < slidesno; i++) {
         slides.push(slide.cloneNode(true));
         slides[i].setAttribute("id", i.toString());
@@ -140,22 +169,18 @@ function make_slides() {
         print_divs.push(i.toString());
         slides_container.appendChild(slides[i]);
     }
-    add_cover();
+    // add_cover();
 
     add_bigtopics_slide();
 
     var keypolitics = document.getElementsByClassName('gt_by_pol_chart_container');
     for (var i = 0; i < keypolitics.length; i++) {
-        copy_plain_charts(keypolitics[i]);
+        copy_plain_charts_inner(keypolitics[i]);
     }
 
 
     var chartdiv = document.getElementsByClassName('chart_container');
     for (var i = 0; i < chartdiv.length; i++) {
-        copy_plain_charts(chartdiv[i]);
-        // add_keypolitics_slides(keypolitics[i]);
-        // chartdiv[i].setAttribute("id", i.toString());
-        // print_divs.push(i.toString());
+        copy_plain_charts_outer(chartdiv[i]);
     }
-    // slides_container.appendChild(slide);
 }

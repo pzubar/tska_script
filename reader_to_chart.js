@@ -120,12 +120,14 @@ function reader_to_chart(){
 		}
 		
 		a = document.getElementsByClassName("select_scalebygt");
+        var adtch = document.getElementsByClassName("add-to-chart");
 		for(var i = 0, l = a.length; i < l; i++){
 			for(k in topic_sheets){
 				var b = document.createElement("option");
 				b.setAttribute("value", topic_sheets[k]);
 				b.textContent = topic_sheets[k];
 				a[i].appendChild(b);
+				adtch[i].appendChild(b.cloneNode(true));
 			}
 		}
 	}
@@ -198,7 +200,7 @@ function reader_to_chart(){
 					width: calc_width(),
 					style: {
 						'fontFamily': '\"Roboto Condensed\"',
-						'borderRight': '1px dashed lightblue',
+						// 'borderRight': '1px dashed lightblue',
 					}
 				},
 				

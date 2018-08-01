@@ -197,8 +197,8 @@
 // });
 //
 //
-var func = function () {
-    // alert("kea");
-
-    xepOnline.Formatter.Format(print_divs,{pageWidth:'1295px', pageHeight:'730px'});
-}
+// var func = function () {
+//     // alert("kea");
+//
+//     xepOnline.Formatter.Format(print_divs,{pageWidth:'1295px', pageHeight:'730px'});
+// }

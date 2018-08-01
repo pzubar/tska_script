@@ -1,3 +1,45 @@
+body {
+	font-family: "Roboto Condensed";
+}
+
+
+/* Style the navbar */
+#navbar {
+	overflow: hidden;
+	background-color: #333;
+	z-index: 99;
+}
+
+/* Navbar links */
+#navbar a {
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px;
+	text-decoration: none;
+}
+
+/* Page content */
+.content {
+	padding: 16px;
+}
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+	padding-top: 60px;
+}
+
+
+
+
 .main-container {
 	width: 90%;
 	max-width: 1640px;
@@ -11,7 +53,7 @@
 .slide {
 	width: 1285px;
 	height: 720px;
-	margin: 25px auto;
+	margin: 0px auto;
 	background-color: white;
 	position: relative;
 	border: 1px solid black;
@@ -66,8 +108,60 @@
 	/*margin: 25px auto;*/
 	/*background-color: white;*/
 /*}*/
+
+.cover {
+	display: flex;
+}
+.cover-img {
+	flex-basis: 20%;
+
+}
+.cover-img img {
+	width: 200px;
+	position: absolute;
+	top: 50px;
+	left: 50px;
+}
+.cover-info {
+	flex-basis: 50%;
+}
+.textpart {
+	/*position: absolute;*/
+	/*top: 200px;*/
+	width: 90%;
+	margin: 200px auto;
+}
+.cover-title {
+	color: #379CB7;
+	font-size: 48px;
+}
+.top-part {
+	position: absolute;
+	right: 50px;
+	/*position: relative;*/
+	/*flex-basis: 10%;*/
+}
+.top-triangles img{
+	/*position: absolute;*/
+
+	/*margin-right: 50px;*/
+}
+.top-logo img{
+	/*width: 25%;*/
+	float: right;
+	height: 50px;
+}
+/*.top-logo img:first-child{*/
+	/*!*width: 25%;*!*/
+	/*!*float: right;*!*/
+
+/*}*/
 @page {
 	size: 1305px 740px;
 	margin: 0px;
 	padding: 0px;
+}
+.chart_container, .chart_container_slide {
+	display: flex;
+	justify-content: space-around;
 }

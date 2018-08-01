@@ -120,12 +120,17 @@ function reader_to_chart(){
 		}
 		
 		a = document.getElementsByClassName("select_scalebygt");
+
+		//
+
 		for(var i = 0, l = a.length; i < l; i++){
 			for(k in topic_sheets){
 				var b = document.createElement("option");
 				b.setAttribute("value", topic_sheets[k]);
 				b.textContent = topic_sheets[k];
 				a[i].appendChild(b);
+                // adtch[i].appendChild(b);
+				console.log(b);
 			}
 		}
 	}
