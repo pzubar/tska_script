@@ -22,14 +22,21 @@ var ExcelToJSON = function(e) {
 			reader_out[sheetName] = (XL_row_object);
 
 		})
+        try {
+            add_bigtopics_chart();
 
-        add_bigtopics_chart();
-		reader_to_chart();
-		reader_to_politics_by_gts();
-        // charts_to_slides();
-        // chart_split();
-        // setTimeout(charts_to_slides, 1000);
-        setTimeout(make_slides, 1000);
+            reader_to_chart();
+            reader_to_politics_by_gts();
+            // charts_to_slides();
+            // chart_split();
+            // setTimeout(charts_to_slides, 1000);
+            setTimeout(make_slides, 1000);
+
+        } catch (err) {
+			alert(err.message);
+        }
+
+
 	};
 
 	reader.onerror = function(ex) {

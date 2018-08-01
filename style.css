@@ -1,5 +1,6 @@
 body {
 	font-family: "Roboto Condensed";
+
 }
 
 
@@ -11,7 +12,7 @@ body {
 }
 
 /* Navbar links */
-#navbar a {
+#navbar a, #navbar input {
 	float: left;
 	display: block;
 	color: #f2f2f2;
@@ -138,8 +139,8 @@ body {
 .top-part {
 	position: absolute;
 	right: 50px;
-	/*position: relative;*/
-	/*flex-basis: 10%;*/
+	top: 0px;
+
 }
 .top-triangles img{
 	/*position: absolute;*/
@@ -156,6 +157,11 @@ body {
 	/*!*float: right;*!*/
 
 /*}*/
+
+.slide p{
+	display: inline-block;
+}
+
 @page {
 	size: 1305px 740px;
 	margin: 0px;
@@ -168,3 +174,26 @@ body {
 .gt_h3 {
 	display: none;
 }
+
+#bigtopics-container, .chart_container {
+	margin-top: 150px!important;
+}
+
+.gt_by_pol_chart_div {
+	margin-top: 100px!important;
+}
+#chart_container {
+	height:100%!important;
+	 width:100%!important;
+	position:absolute!important;
+}
+
+@media screen {
+	body {
+		background-color: lightgray;
+	}
+	.slide {
+		margin: 10px auto;
+	}
+}
+

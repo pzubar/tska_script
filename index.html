@@ -3,10 +3,8 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>TSKA-SCRIPT</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-
-
 	<style type="text/css" media="print">
 		.no-print { display: none; }
 		.main-container {
@@ -21,7 +19,9 @@
 		.cover-title {
 			color: #6dc8eb !important;
 		}
-
+		.gt_by_pol_chart_container, .chart_container {
+			border: 0px solid white!important;
+		}
 		p {
 			padding-top: 0px;
 		}
@@ -33,6 +33,8 @@
 			margin: 0;
 			padding: 0;
 		}
+
+
 	</style>
 
 </head>
@@ -43,23 +45,11 @@
 	<!-- TODO: replace with local libs-->
 	<script src="https://code.highcharts.com/modules/annotations.js"></script>
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
-	<!--<script src="https://code.highcharts.com/modules/export-data.js"></script>-->
-	<!--<script src="https://code.highcharts.com/modules/offline-exporting.js"></script>-->
+
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.10.8/xlsx.full.min.js"></script>
-
-
-	<!--<script type="text/javascript" src="http://canvg.github.io/canvg/rgbcolor.js"></script>-->
-	<!--<script type="text/javascript" src="http://canvg.github.io/canvg/StackBlur.js"></script>-->
-	<!--<script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script>-->
-
-
-	<!--<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>-->
-
-	<!--<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>-->
-	<!--<script src="xepOnline.jqPlugin.js"></script>-->
 
 	<script src="pz_script.js"></script>
 	<script src="chart_politics_by_gts.js"></script>
@@ -72,15 +62,12 @@
 	<script src="reader_xl_to_json.js"></script>
 	<!-- 0) Has filereader onload callback that calls funcs above -->
 
-	<!--<script src="charts_to_slides.js"></script>-->
 
 	<script src="to_slides_vector.js"></script>
 
-	<!--<script src="svgToPdf.js"></script>-->
-	<!--<canvas id="canvas" width="1200px" height="600px"></canvas>-->
 
 	<div id="navbar" class="no-print">
-		<a href="#home"><input type="file" onchange="ExcelToJSON(event)" /></a>
+		<input type="file" onchange="ExcelToJSON(event)" />
 		<!--<a href="#news" onclick="make_slides();">Сформувати презентацію</a>-->
 		<a href="#contact" onclick="window.print();">Завантажити презентацію</a>
 	</div>
@@ -88,24 +75,13 @@
 	<div  class="no-print">
 	<div id="buff"></div>
 	<p>
-		<!--<input type="file" onchange="ExcelToJSON(event)" />-->
-		<!--<button id="build_chart_btn">Build charts</button>-->
+
 	</p>
 
-	<!--<button id="cmda">Generate PDF</button>-->
-		<!--<button onclick="window.print();">PDF IT</button>-->
-
-
-	<!--<a href="#" onclick="return xepOnline.Formatter.Format(['slide_1', 'slide_2', 'printme'],{pageWidth:'1295px', pageHeight:'730px'});">-->
-	<!--<a href="#" onclick="func()">-->
-		<!--<img src="button-prin.png" width="50px">-->
-	<!--</a>	<!--<a href="#" onclick="func()">-->
-		<!--<img src="button-prin.png" width="50px">-->
-	<!--</a>-->
 	</div>
 
-	<div id="slides" class="print">
-		<div class="slide pagebreak cover">
+	<div id="slides" class="print" contenteditable="true">
+		<div class="slide pagebreak cover" >
 			<div class="cover-img">
 				<img  src="img/mainimage.png" alt="">
 			</div>
@@ -122,32 +98,27 @@
 				<div class="top-logo">
 					<img src="img/top-logo.png" alt="">
 					<img src="img/top-mediaportret.png" alt="">
-
 				</div>
 
 			</div>
 		</div>
 		<div style="display: none">
-			<div class="slide pagebreak"></div>
+			<div class="slide pagebreak">
+				<div class="slide-title"></div>
+				<div class="slide-subtitle"></div>
+				<div class="top-part">
+					<div class="top-triangles">
+						<img src="img/top-triangles.png" alt="">
+					</div>
+					<div class="top-logo">
+						<img src="img/top-logo.png" alt="">
+						<img src="img/top-mediaportret.png" alt="">
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<!--<div class="main-container no-print">-->
 
-		<!--&lt;!&ndash;<div class="slide" id="slide_1">&ndash;&gt;-->
-			<!--&lt;!&ndash;&lt;!&ndash;<img src="https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg" alt="" class="mainimg">&ndash;&gt;&ndash;&gt;-->
-			<!--&lt;!&ndash;&lt;!&ndash;<div class="subtitle">01.02.2018</div>&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;<div class="title">Порядок денний ключових політичних спікерів</div>&ndash;&gt;&ndash;&gt;-->
-			<!--&lt;!&ndash;&lt;!&ndash;<div class="slide-chart"></div>&ndash;&gt;&ndash;&gt;-->
-		<!--&lt;!&ndash;</div>&ndash;&gt;-->
-		<!--
-		<!--&lt;!&ndash;<div class="slide" id="slide_2">&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;<div class="subtitle">Title</div>&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;<div class="title">aa</div>&ndash;&gt;&ndash;&gt;-->
-			<!--&lt;!&ndash;<div class="slide-chart"><canvas width="1200px" height="600px"></canvas></div>&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-	<!--</div>-->
-	<!--<div  class="no-print">-->
 	<p class="no-print">Sheets:</p>
 	<ul class="no-print" id="gt_ul"></ul>
 
@@ -167,9 +138,9 @@
 		<div style="text-align: center;">
 			<div class="gt_by_pol_chart_container" style="max-width: 1200px; max-height: 600px; margin: 0 auto; border: 1px dashed lightgray"></div>
 		</div>
-		<p class="no-print">Fix and export:
-			<button class="export_stacked_bar_btn">Export chart</button>
-		</p>
+		<!--<p class="no-print">Fix and export:-->
+			<!--<button class="export_stacked_bar_btn">Export chart</button>-->
+		<!--</p>-->
 		<p class="no-print">Set width %:
 			<input class="set_stacked_bar_width_input" type="text" style="width: 3em" value="50" />
 			<button class="set_stacked_bar_width_btn">Set</button>
@@ -184,19 +155,19 @@
 		<!--<p class="no-print">Fix and export:-->
 			<!--<button class="export_btn">Export chart</button>-->
 		<!--</p>-->
-			<b class="no-print">Bar #:</b>
+			<b class="no-print">Змінити змістити підпис №:</b>
 		</span>
-		<input class="no-print" type="text" class="bar_n" style="width: 3em" />
+		<input class="no-print bar_n" type="text" style="width: 3em" />
 		<span class="no-print">
 			<b class="no-print">X:</b>
 		</span>
-		<input class="no-print" type="number" class="x_fix" style="width: 3em" />
+		<input class="no-print x_fix" type="number" style="width: 3em" />
 		<span class="no-print">
 			<b>Y:</b>
 		</span>
-		<input class="no-print" type="number" class="y_fix" style="width: 3em" />
+		<input class="no-print y_fix" type="number" style="width: 3em" />
 		<button class="no-print move_annotations_btn">Move</button>
-		<p class="no-print">| Scale by</p>
+		<p class="no-print"> Масштабувати до:</p>
 		<select class="no-print select_scalebygt"></select>
 		<button class="no-print apply_scalebygt">Scale</button>
 		<button class="no-print toggle_title">Toggle title</button>
@@ -205,10 +176,8 @@
 		<span class="no-print">Додати до:</span>
 		<select class="no-print add-to-chart"></select>
 		<button class="no-print apply-add-to-chart">Add</button>
-		<button class="no-print remove-slide">ВИДАЛИТИ СЛАЙД</button>
+		<!--<button class="no-print remove-slide">ВИДАЛИТИ СЛАЙД</button>-->
 	</div>
-	<!--<img id="logo" src="img/mainimage.png">-->
-	<!--</div>-->
 
 <script>
     // When the user scrolls the page, execute myFunction

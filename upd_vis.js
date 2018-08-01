@@ -126,6 +126,8 @@ function upd_vis(){
 			}}
 		});
 		fixup_labels_above_xaxis(gt);
+        chart.redraw();
+        chart.reflow();
 	}
 	a = document.getElementsByClassName("apply_scalebygt");
 	for(i in a){
@@ -147,28 +149,11 @@ function upd_vis(){
                 break ;
 			}
         }
-
+        update_title(addto_container.parentNode);
 		addto_container = addto_container.getElementsByClassName('chart_container');
         addto_container = addto_container[0];
 		// alert(addto_container.children[0].id);
         addto_container.appendChild(cur.cloneNode(true));
-        // document.body.appendChild(cur.cloneNode(true));
-		// alert(gt);
-        // var scalebygt =
-        // var chart = charts[gt];
-        // var scalebychart = charts[scalebygt];
-        //
-        // chart.update({
-        //     yAxis: {max: scalebychart.yAxis[0].max},
-        //     chart: {
-        //         marginTop: scalebychart.margin[0],
-        //         marginBottom: scalebychart.marginBottom
-        //     },
-        //     plotOptions: {series: {
-        //         pointWidth: Math.ceil(scalebychart.series[0].columnMetrics.width)
-        //     }}
-        // });
-        // fixup_labels_above_xaxis(gt);
     }
     a = document.getElementsByClassName("apply_scalebygt");
     for(i in a){
