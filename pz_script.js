@@ -1,4 +1,4 @@
-function pz_script() {
+function add_bigtopics_chart() {
 
     var bigTopics = reader_out['Розподіл за темами великими'];
     var bigname = "Розподіл за темами великими";
@@ -46,7 +46,7 @@ function pz_script() {
             bigSeries[i].data.push(Number(elem[item]));
         }
     });
-    Highcharts.chart('container', {
+    Highcharts.chart('bigtopics-container', {
         chart: {
             type: 'area'
         },

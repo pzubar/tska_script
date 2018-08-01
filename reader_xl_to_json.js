@@ -23,7 +23,7 @@ var ExcelToJSON = function(e) {
 
 		})
 
-		pz_script();
+        add_bigtopics_chart();
 		reader_to_chart();
 		reader_to_politics_by_gts();
         // charts_to_slides();
