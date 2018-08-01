@@ -50,7 +50,7 @@ function lookup_grosstopic(a, colors){
 }
 
 // kostyl
-var f = function(){
+function fix_topics_colors(){
 	var sht = reader_out['Список тем'];
 	// while there is column 'B' (blue), e.g. iterate through data from columns J-M, sheet 'Список тем'
 	var l = sht.length, i = 0;
@@ -62,10 +62,11 @@ var f = function(){
 		}
 		i++;
 	}
-}(); f = null;
+}
 
 
 function reader_to_chart(){
+	fix_topics_colors();
 	
 	var grosstopics = [];
 	var topic_sheets = [];
