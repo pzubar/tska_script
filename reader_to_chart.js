@@ -192,8 +192,8 @@ function reader_to_chart(){
 			}
 
 			function calc_width(){
-				if(150 * subtopics.length > 1200)
-					return 1200;
+				if(150 * subtopics.length > 1100)
+					return 1100;
 				else
 					return 150 * subtopics.length;
 			}

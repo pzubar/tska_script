@@ -115,11 +115,20 @@ function upd_vis(){
 		}
 	}, 100);
 	
-	function scale_by_gt(){
-		var gt = this.parentNode.querySelector(".gt_h3").textContent;
-		var scalebygt = this.parentNode.querySelector(".select_scalebygt").value;
+	function scale_by_gt(elem){
+		var gt = elem.parentNode.querySelector(".gt_h3").textContent;
+		var scalebygt = elem.parentNode.querySelector(".add-to-chart").value;
 		var chart = charts[gt];
 		var scalebychart = charts[scalebygt];
+
+		var yMaxOriginal = (data_series[gt][0]).y;
+        var yMaxTarget = (data_series[scalebygt][0]).y;
+
+		if (yMaxOriginal > yMaxTarget) {
+			var buf = chart;
+			chart = scalebychart;
+			scalebychart = buf;
+		}
 
 		chart.update({
 			yAxis: {max: scalebychart.yAxis[0].max},
@@ -132,8 +141,6 @@ function upd_vis(){
 			}}
 		});
 		fixup_labels_above_xaxis(gt);
-        chart.redraw();
-        chart.reflow();
 	}
 	a = document.getElementsByClassName("apply_scalebygt");
 	for(i in a){
@@ -141,9 +148,14 @@ function upd_vis(){
 	}
 
     function add_to_ch(){
+
+
         var curtitle = this.parentNode.querySelector(".gt_h3");
 		var cur = this.parentNode.querySelector(".highcharts-container");//.textContent;
 		var addto = this.parentNode.querySelector(".add-to-chart").value;
+		// var scalebutton =  this.parentNode.querySelector(".apply_scalebygt");
+		// scalebutton.click();
+        scale_by_gt(this);
         var titles = document.getElementsByClassName('gt_h3');
         var addto_container;
 
@@ -159,7 +171,7 @@ function upd_vis(){
 		addto_container = addto_container.getElementsByClassName('chart_container');
         addto_container = addto_container[0];
 		// alert(addto_container.children[0].id);
-        addto_container.appendChild(cur.cloneNode(true));
+        addto_container.appendChild(cur);
     }
     a = document.getElementsByClassName("apply_scalebygt");
     for(i in a){
@@ -186,21 +198,29 @@ function upd_vis(){
 		for(i in b){
 			b[i].onclick = function(){
 				var gt = this.parentNode.querySelector(".gt_h3").textContent;
-				var grosstopic = lookup_grosstopic(gt, colors);
-				grosstopic = grosstopic.charAt(0).toUpperCase() + grosstopic.slice(1);
-				var mt_delta = 36;
+				var topicsonslide = gt.split(" та ");
+				for (var i = 0; i < topicsonslide.length; i++)
+				{
+                    gt = topicsonslide[i];
+					var grosstopic = lookup_grosstopic(gt, colors);
+                    grosstopic = grosstopic.charAt(0).toUpperCase() + grosstopic.slice(1);
+                    var mt_delta = 36;
 
-				var chart = charts[gt];
-				if(chart.title.element.textContent){
-					grosstopic = '';
-					mt_delta = -36;
+                    var chart = charts[gt];
+                    if(chart.title.element.textContent){
+                        grosstopic = '';
+                        mt_delta = -36;
+                    }
+                    var mt = chart.margin[0];
+                    mt == undefined ? mt = 10 : mt = mt;
+                    chart.update({
+                        title: {text: grosstopic},
+                        chart: {marginTop: mt + mt_delta}
+                    });
+
+
 				}
-				var mt = chart.margin[0];
-				mt == undefined ? mt = 10 : mt = mt;
-				chart.update({
-					title: {text: grosstopic},
-					chart: {marginTop: mt + mt_delta}
-				});
+
 			}
 		}
 	}

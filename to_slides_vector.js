@@ -41,13 +41,6 @@ function copy_plain_charts_outer(elem) {
     slide.appendChild(elem);
     update_title(slide);
 
-
-
-    // delete_button.innerHTML = "ВИДАЛИТИ ЦЕЙ СЛАЙД";
-    // delete_button.onclick = function() {
-    //     slide.parentNode.removeChild(slide);
-    // };
-
     var  delete_button = document.createElement('button');
     delete_button.innerHTML = "ВИДАЛИТИ ЦЕЙ СЛАЙД";
     delete_button.onclick = function() {
@@ -56,12 +49,17 @@ function copy_plain_charts_outer(elem) {
     delete_button.className = "no-print";
     slide.appendChild(delete_button);
 
+    // if gt_by_pol_chart_div
+    if (elem.classList.contains('chart_div'))
+    {
+        var input = document.createElement('div');
+        input.style.position = 'absolute'
+        input.className += 'textarea draggable';
+        input.innerHTML += ' Кількість повідомлень, ініційованих політиками, у вибірці топ-10 інтернет-медіа, на центральному телебаченні та у центральній пресі';
+        input.style.fontFamily = "Roboto Condensed";
+        slide.appendChild(input);
 
-    var input = document.createElement('textarea');
-    input.style.position = 'absolute'
-    input.className += ' draggable';
-    input.style.fontFamily = "Roboto Condensed";
-    slide.appendChild(input);
+    }
     slide_i++;
 }
 
@@ -72,7 +70,7 @@ function make_slides() {
 
     var slidesno = document.getElementsByClassName('gt_by_pol_chart_div').length;
     slidesno += document.getElementsByClassName('chart_div').length;
-    slidesno += 2; //title + second stile
+    slidesno += 1; // + second slide
 
 
     var slide = slides_container.children[1].children[0];
@@ -93,11 +91,6 @@ function make_slides() {
     }
 
     add_bigtopics_slide();
-
-    var keypolitics = document.getElementsByClassName('gt_by_pol_chart_div_asses');
-    for (var i = 0; i < keypolitics.length; i++) {
-        copy_plain_charts_outer(keypolitics[i]);
-    }
 
     var keypolitics = document.getElementsByClassName('gt_by_pol_chart_div');
     for (var i = 0; i < keypolitics.length; i++) {

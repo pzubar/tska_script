@@ -3,23 +3,32 @@ body {
 
 }
 
+body > :not(#slides){
+	display: none;
+}
+
+@media only screen {
+	#navbar {
+		overflow: hidden;
+		background-color: #333;
+		z-index: 99;
+		display: block!important;
+	}
+
+	/* Navbar links */
+	#navbar a, #navbar input {
+		float: left;
+		display: block;
+		color: #f2f2f2;
+		text-align: center;
+		padding: 14px;
+		text-decoration: none;
+	}
+}
+
 
 /* Style the navbar */
-#navbar {
-	overflow: hidden;
-	background-color: #333;
-	z-index: 99;
-}
 
-/* Navbar links */
-#navbar a, #navbar input {
-	float: left;
-	display: block;
-	color: #f2f2f2;
-	text-align: center;
-	padding: 14px;
-	text-decoration: none;
-}
 
 /* Page content */
 .content {
@@ -176,7 +185,7 @@ body {
 }
 
 #bigtopics-container, .chart_container {
-	margin-top: 150px!important;
+	margin-top: 120px!important;
 }
 
 .gt_by_pol_chart_div {
@@ -197,16 +206,32 @@ body {
 	}
 }
 
-textarea {
-	width: 150px;
-	height: 150px;
+.textarea {
+	width: 300px;
+	height:auto;
 	padding: 12px 20px;
 	box-sizing: border-box;
 	border: 2px solid #ccc;
 	border-radius: 4px;
-	background-color:rgba(0, 0, 0, 0.5);
+	/*background-color:rgba(0, 0, 0, 0.5);*/
 	font-size: 16px;
 	resize: none;
 	top: 150px;
 	right: 150px;
+}
+
+.gt_by_pol_chart_container {
+	/*width: auto!important;*/
+}
+
+div.infolog {
+	position: -webkit-sticky;
+	position: sticky;
+	bottom: 0;
+	right: 0;
+	background-color: yellow;
+	padding: 50px;
+	font-size: 20px;
+	width: 100px;
+	height: 50px;
 }

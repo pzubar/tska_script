@@ -58,8 +58,8 @@ function reader_to_politics_by_gts(){
         arr_pol_sum.sort(compareSecondColumnDesc);
 
         document.getElementById("politicians_count").textContent += arr_pol_sum.length;
-        // document.getElementById("pol_by_gts_split_by_input").value = "2 " + Math.ceil((arr_pol_sum.length - 2) / 2) + " " + (arr_pol_sum.length - 2 - Math.ceil((arr_pol_sum.length - 2) / 2));
-        document.getElementById("pol_by_gts_split_by_input").value = "2 " + Math.ceil((arr_pol_sum.length - 2));
+        document.getElementById("pol_by_gts_split_by_input").value = "2 " + Math.ceil((arr_pol_sum.length - 2) / 2) + " " + (arr_pol_sum.length - 2 - Math.ceil((arr_pol_sum.length - 2) / 2));
+        // document.getElementById("pol_by_gts_split_by_input").value = "2 " + Math.ceil((arr_pol_sum.length - 2));
 
         gt_alphaorder = Object.keys(gt_by_pol);
         gt_alphaorder.sort(sortUkrAlphabet);
@@ -226,7 +226,7 @@ function reader_to_politics_by_gts(){
 			var w = Number(container.style.width.slice(0, container.style.width.length - 2));
 			w = w * (Number(this.parentNode.querySelector(".set_stacked_bar_width_input").value) / 100);
 			if(this.className == "set_stacked_bar_width_orig_btn")
-				w = 1200;
+				w = 1100;
 			container.style.width = w +"px";
 			build_chart(cs[cid], container, cds[cid], container.id);
 			

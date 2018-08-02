@@ -3,11 +3,11 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>TSKA-SCRIPT</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 	<style type="text/css" media="print">
-		.no-print { display: none; }
+		.no-print { display: none!important; }
 		.main-container {
 			height: auto!important;
 		}
@@ -35,7 +35,9 @@
 			padding: 0;
 		}
 
-		textarea { border: none!important; resize: none!important; }
+		.textarea {
+			border: none!important;
+		}
 	</style>
 
 </head>
@@ -63,14 +65,6 @@
 		<input type="file" onchange="ExcelToJSON(event)" />
 		<!--<a href="#news" onclick="make_slides();">Сформувати презентацію</a>-->
 		<a href="#contact" onclick="window.print();">Завантажити презентацію</a>
-	</div>
-
-	<div  class="no-print">
-	<div id="buff"></div>
-	<p>
-
-	</p>
-
 	</div>
 
 	<div id="slides" class="print" contenteditable="true">
@@ -117,13 +111,13 @@
 	<p class="no-print">Sheets:</p>
 	<ul class="no-print" id="gt_ul"></ul>
 
-	<div id="bigtopics-container" style="min-width: 310px; width: 1200px;margin: 0 auto"></div>
+	<div id="bigtopics-container" style="min-width: 310px; width: 1100px;margin: 0 auto"></div>
 
-	<div class="gt_by_pol_chart_div_asses">
+	<div class="gt_by_pol_chart_div_asses no-print">
 		<h3 style="text-align: center; font-family: 'Roboto Condensed'">Тематика заяв ключових політиків</h3>
-		<div id="gt_by_pol_chart_container_asses" style="width: 1200px; height: 400px; margin: 0 auto; border: 1px dashed lightgray"></div>
-		<p  class="no-print" id="politicians_count">Всього політиків: </p>
-		<p  class="no-print">Split by:
+		<div id="gt_by_pol_chart_container_asses" style="width: 1100px; height: 400px; margin: 0 auto; border: 1px dashed lightgray"></div>
+		<p class="no-print" id="politicians_count">Всього політиків: </p>
+		<p class="no-print">Split by:
 			<input id="pol_by_gts_split_by_input" type="text" />
 			<button id="pol_by_gts_split">Split</button>
 		</p>
@@ -131,26 +125,26 @@
 	</div>
 	<div class="gt_by_pol_chart_div">
 		<div style="text-align: center;">
-			<div class="gt_by_pol_chart_container" style="max-width: 1200px; max-height: 600px; margin: 0 auto; border: 1px dashed lightgray"></div>
+			<div class="gt_by_pol_chart_container" style="max-width: 1100px; max-height: 600px; margin: 0 auto; border: 1px dashed lightgray"></div>
 		</div>
 		<!--<p class="no-print">Fix and export:-->
 			<!--<button class="export_stacked_bar_btn">Export chart</button>-->
 		<!--</p>-->
 		<p class="no-print">Set width %:
-			<input class="set_stacked_bar_width_input" type="text" style="width: 3em" value="50" />
-			<button class="set_stacked_bar_width_btn">Set</button>
-			<span>&emsp;</span>
-			<button class="set_stacked_bar_width_orig_btn">Original</button>
+			<input class="set_stacked_bar_width_input no-print" type="text" style="width: 3em" value="50" />
+			<button class="set_stacked_bar_width_btn no-print">Set</button>
+			<!--<span>&emsp;</span>-->
+			<button class="set_stacked_bar_width_orig_btn no-print">Original</button>
 		</p>
 	</div>
 
 	<div class="chart_div">
 		<h3 class="gt_h3 no-print" style="text-align: center;">Gross topic 1</h3>
-		<div class="chart_container" style="min-width: 310px; width: 1200px; height: 400px; margin: 0 auto; border: 1px dashed lightgray"></div>
+		<div class="chart_container" style="min-width: 310px; width: 1100px; height: 450px; margin: 0 auto; border: 1px dashed lightgray"></div>
 		<!--<p class="no-print">Fix and export:-->
 			<!--<button class="export_btn">Export chart</button>-->
 		<!--</p>-->
-			<b class="no-print">Змінити змістити підпис №:</b>
+			<b class="no-print">змістити підпис №:</b>
 		</span>
 		<input class="no-print bar_n" type="text" style="width: 3em" />
 		<span class="no-print">
@@ -173,7 +167,9 @@
 		<button class="no-print apply-add-to-chart">Add</button>
 		<!--<button class="no-print remove-slide">ВИДАЛИТИ СЛАЙД</button>-->
 	</div>
+	<!--<div class="infolog no-print">-->
 
+	<!--</div>-->
 <script>
     // When the user scrolls the page, execute myFunction
     window.onscroll = function() {myFunction()};
@@ -242,48 +238,30 @@
             var newX = clientX - shiftX;
             var newY = clientY - shiftY;
 
-            // ------- обработаем вынос за нижнюю границу окна ------
-            // новая нижняя граница элемента
             var newBottom = newY + dragElement.offsetHeight;
 
-            // если новая нижняя граница вылезает вовне окна - проскроллим его
             if (newBottom > document.documentElement.clientHeight) {
-                // координата нижней границы документа относительно окна
                 var docBottom = document.documentElement.getBoundingClientRect().bottom;
 
-                // scrollBy, если его не ограничить - может заскроллить за текущую границу документа
-                // обычно скроллим на 10px
-                // но если расстояние от newBottom до docBottom меньше, то меньше
                 var scrollY = Math.min(docBottom - newBottom, 10);
 
-                // ошибки округления при полностью прокрученной странице
-                // могут привести к отрицательному scrollY, что будет означать прокрутку вверх
-                // поправим эту ошибку
                 if (scrollY < 0) scrollY = 0;
 
                 window.scrollBy(0, scrollY);
 
-                // резким движением мыши элемент можно сдвинуть сильно вниз
-                // если он вышел за нижнюю границу документа -
-                // передвигаем на максимально возможную нижнюю позицию внутри документа
                 newY = Math.min(newY, document.documentElement.clientHeight - dragElement.offsetHeight);
             }
 
 
-            // ------- обработаем вынос за верхнюю границу окна ------
             if (newY < 0) {
-                // проскроллим вверх на 10px, либо меньше, если мы и так в самом верху
                 var scrollY = Math.min(-newY, 10);
                 if (scrollY < 0) scrollY = 0; // поправим ошибку округления
 
                 window.scrollBy(0, -scrollY);
-                // при резком движении мыши элемент мог "вылететь" сильно вверх, поправим его
                 newY = Math.max(newY, 0);
             }
 
 
-            // зажать в границах экрана по горизонтали
-            // здесь прокрутки нет, всё просто
             if (newX < 0) newX = 0;
             if (newX > document.documentElement.clientWidth - dragElement.offsetHeight) {
                 newX = document.documentElement.clientWidth - dragElement.offsetHeight;
@@ -296,13 +274,6 @@
         // отменим действие по умолчанию на mousedown (выделение текста, оно лишнее)
         // return false;
     }
-
-    $('textarea').each(function () {
-        this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
-    }).on('input', function () {
-        this.style.height = 'auto';
-        this.style.height = (this.scrollHeight) + 'px';
-    });
 
 </script>
 </body>
