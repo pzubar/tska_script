@@ -129,11 +129,24 @@ function reader_to_politics_by_gts(){
 				}
 			},
 			colors: d[2],
+
 			chart: {
 				type: 'bar',
 				style: {
 					'fontFamily': '\"Roboto\"',
-				}
+				},
+                events: {
+                    load: function() {
+                        this.series.forEach(function(s) {
+                            s.update({
+                                showInLegend: s.points.length
+                            });
+							// alert(s.points.length);
+                        });
+                        // alert('mamamia');
+
+                    }
+                }
 			},
 			title: {
 				text: ''
@@ -183,7 +196,22 @@ function reader_to_politics_by_gts(){
 	}
 	build_chart();
 	//build_chart = null;
-	
+
+	var free_empty_obj = function (cd) {
+        for(var i = 0; i < cd.length; i++)
+        {
+            var elem = cd[i].data;
+            for (var a = 0; a < elem.length; a++) {
+                // alert(elem[a].y);
+                if (elem[a].y != 0)
+                	break ;
+                if (elem[a].y == 0 && (a + 1) == elem.length)
+                    cd.splice(i, 1);
+            }
+        }
+        return cd;
+    };
+
 	var chart_split = function(){
 		var a = this.parentNode.querySelector("#pol_by_gts_split_by_input").value;
 		a = a.split(" ");
@@ -206,6 +234,8 @@ function reader_to_politics_by_gts(){
 					data: d[1][j].data.slice(last_index, last_index + Number(a[i]))
 				});
 			}
+
+			cd = free_empty_obj(cd);
 			cds.push(cd);
 			last_index += Number(a[i]);
 			
@@ -226,7 +256,7 @@ function reader_to_politics_by_gts(){
 			var w = Number(container.style.width.slice(0, container.style.width.length - 2));
 			w = w * (Number(this.parentNode.querySelector(".set_stacked_bar_width_input").value) / 100);
 			if(this.className == "set_stacked_bar_width_orig_btn")
-				w = 1100;
+				w = 1200;
 			container.style.width = w +"px";
 			build_chart(cs[cid], container, cds[cid], container.id);
 			

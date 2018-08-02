@@ -3,9 +3,9 @@ body {
 
 }
 
-body > :not(#slides){
-	display: none;
-}
+/*body > :not(#slides){*/
+	/*display: none;*/
+/*}*/
 
 @media only screen {
 	#navbar {
