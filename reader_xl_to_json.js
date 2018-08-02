@@ -1,3 +1,4 @@
+var g_infolog = document.getElementById('infolog_area');
 var reader_out = [];
 
 var ExcelToJSON = function(e) {
@@ -21,23 +22,23 @@ var ExcelToJSON = function(e) {
 			XL_row_object.sheet_name = sheetName;
 			reader_out[sheetName] = (XL_row_object);
 
-		})
+		});
         try {
             add_bigtopics_chart();
-
-
-
         } catch (err) {
-			alert(err.message);
+            g_infolog.innerHTML += "Неможливо побудувати діаграму розподілу за великими політиками. Перевірте наявність відповідного аркуша";
         }
         reader_to_chart();
         reader_to_politics_by_gts();
-        // charts_to_slides();
-        // chart_split();
-        // setTimeout(charts_to_slides, 1000);
         
-		make_slides();
 
+        try {
+            make_slides();
+        } catch (err) {
+            g_infolog.innerHTML += "Сталася помилка при створенні слайдів";
+        }
+        g_infolog.innerHTML += "Слайди створено";
+        // alert('Слайди побудовано');
 	};
 
 	reader.onerror = function(ex) {

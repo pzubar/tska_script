@@ -24,31 +24,43 @@ body > :not(#slides){
 		padding: 14px;
 		text-decoration: none;
 	}
+	body {
+		background-color: lightgray;
+	}
+	.slide {
+		margin: 10px auto;
+	}
+	div.infolog {
+		position: -webkit-sticky;
+		position: sticky;
+		bottom: 0;
+		/*right: 0;*/
+		float: right;
+		background-color: #4e80ba;
+		padding: 25px;
+		font-size: 20px;
+		/*width: 100px;*/
+		/*height: 50px*/
+		display: block!important;
+		border-radius: 2px;
+	}
 }
 
 
-/* Style the navbar */
-
-
-/* Page content */
 .content {
 	padding: 16px;
 }
 
-/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+
 .sticky {
 	position: fixed;
 	top: 0;
 	width: 100%;
 }
 
-/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
 .sticky + .content {
 	padding-top: 60px;
 }
-
-
-
 
 .main-container {
 	width: 90%;
@@ -72,30 +84,12 @@ body > :not(#slides){
 	text-transform: uppercase;
 }
 
-#slide_1 {
-	/*display: flex;*/
-}
-#slide_1 img.mainimg {
-	width: 200px;
-	top:50px;
-	left: 50px;
-	position: absolute;
-
+.slide-title {
+	margin-top: 25px;
+	margin-left: 25px;
+	font-size: 32px;
 }
 
-#slide_1 .title{
-	padding-top: 50px;
-	text-align: left;
-	font-family: "Roboto Condensed";
-	color: cornflowerblue;
-	font-size:48px;
-	width: 40%;
-	/*margin: 0 auto;*/
-	line-height: 1.1;
-}
-#slide_3 g.highcharts-legend {
-	/*display: none;*/
-}
 .slide-chart svg {
 	width: 100%;
 }
@@ -103,21 +97,6 @@ body > :not(#slides){
 .slide svg {
 	border-right: 1px solid white;
 }
-/*#slides > canvas {*/
-	/*width: 1285px;*/
-	/*display: block;*/
-	/*height: 720px;*/
-	/*!*margin: 25px auto;*!*/
-	/*background-color: white;*/
-/*}*/
-
-/*#slides > div {*/
-	/*width: 1295px;*/
-	/*display: block;*/
-	/*height: 730px;*/
-	/*margin: 25px auto;*/
-	/*background-color: white;*/
-/*}*/
 
 .cover {
 	display: flex;
@@ -151,21 +130,13 @@ body > :not(#slides){
 	top: 0px;
 
 }
-.top-triangles img{
-	/*position: absolute;*/
 
-	/*margin-right: 50px;*/
-}
 .top-logo img{
-	/*width: 25%;*/
+
 	float: right;
 	height: 50px;
 }
-/*.top-logo img:first-child{*/
-	/*!*width: 25%;*!*/
-	/*!*float: right;*!*/
 
-/*}*/
 
 .slide p{
 	display: inline-block;
@@ -191,20 +162,13 @@ body > :not(#slides){
 .gt_by_pol_chart_div {
 	margin-top: 100px!important;
 }
+
 #chart_container {
 	height:100%!important;
 	 width:100%!important;
 	position:absolute!important;
 }
 
-@media screen {
-	body {
-		background-color: lightgray;
-	}
-	.slide {
-		margin: 10px auto;
-	}
-}
 
 .textarea {
 	width: 300px;
@@ -224,14 +188,3 @@ body > :not(#slides){
 	/*width: auto!important;*/
 }
 
-div.infolog {
-	position: -webkit-sticky;
-	position: sticky;
-	bottom: 0;
-	right: 0;
-	background-color: yellow;
-	padding: 50px;
-	font-size: 20px;
-	width: 100px;
-	height: 50px;
-}

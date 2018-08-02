@@ -1,3 +1,4 @@
+
 function add_bigtopics_chart() {
 
     var bigTopics = reader_out['Розподіл за темами великими'];

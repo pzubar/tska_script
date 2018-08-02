@@ -1,11 +1,13 @@
 var slides = [];
 var slide_i = 0;
-var print_divs = [];
+// var print_divs = [];
 
 function update_title(slide, text) {
     var head = slide.querySelector(".gt_h3");
     if (head)
         var title_a = head.textContent;
+    else if (text)
+        title_a = text;
     else
         title_a = "Тематика заяв ключових політиків";
     var title = slide.querySelector(".slide-title");
@@ -13,20 +15,13 @@ function update_title(slide, text) {
     title.style.color = "#5F9EBB";
 }
 
-function create_slide_title(text, slide) {
-    var title = document.createElement('div');
-    title.innerHTML = text.toUpperCase();
-
-    title.style.color = "#5F9EBB";
-    slide.appendChild(title);
-}
-
 function add_bigtopics_slide() {
     var slide = slides[slide_i];
-    create_slide_title("Динаміка уваги до ключових тем", slide);
+    update_title(slide, "Динаміка уваги до ключових тем");
     var container = document.getElementById('bigtopics-container');
-    slide.appendChild(container);
 
+    slide.appendChild(container);
+    add_textarea(slide);
     slide_i++;
 }
 
@@ -52,15 +47,18 @@ function copy_plain_charts_outer(elem) {
     // if gt_by_pol_chart_div
     if (elem.classList.contains('chart_div'))
     {
-        var input = document.createElement('div');
-        input.style.position = 'absolute'
-        input.className += 'textarea draggable';
-        input.innerHTML += ' Кількість повідомлень, ініційованих політиками, у вибірці топ-10 інтернет-медіа, на центральному телебаченні та у центральній пресі';
-        input.style.fontFamily = "Roboto Condensed";
-        slide.appendChild(input);
-
+        add_textarea(slide);
     }
     slide_i++;
+}
+
+function add_textarea(slide) {
+    var input = document.createElement('div');
+    input.style.position = 'absolute'
+    input.className += 'textarea draggable';
+    input.innerHTML += ' Кількість повідомлень, ініційованих політиками, у вибірці топ-10 інтернет-медіа, на центральному телебаченні та у центральній пресі';
+    input.style.fontFamily = "Roboto Condensed";
+    slide.appendChild(input);
 }
 
 function make_slides() {
@@ -74,19 +72,19 @@ function make_slides() {
 
 
     var slide = slides_container.children[1].children[0];
-
-    if (print_divs.length > 0) {
-        for (var i = 0; i < print_divs.length; i++) {
-            var elem = document.getElementById(print_divs[i]);
-            elem.parentNode.removeChild(elem);
-        }
-        print_divs.length = 0;
-    }
+    //
+    // if (print_divs.length > 0) {
+    //     for (var i = 0; i < print_divs.length; i++) {
+    //         var elem = document.getElementById(print_divs[i]);
+    //         elem.parentNode.removeChild(elem);
+    //     }
+    //     print_divs.length = 0;
+    // }
 
     for (var i = 0; i < slidesno; i++) {
         slides.push(slide.cloneNode(true));
         slides[i].setAttribute("id", i.toString());
-        print_divs.push(i.toString());
+        // print_divs.push(i.toString());
         slides_container.appendChild(slides[i]);
     }
 
