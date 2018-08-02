@@ -134,19 +134,7 @@ function reader_to_politics_by_gts(){
 				type: 'bar',
 				style: {
 					'fontFamily': '\"Roboto\"',
-				},
-                events: {
-                    load: function() {
-                        this.series.forEach(function(s) {
-                            s.update({
-                                showInLegend: s.points.length
-                            });
-							// alert(s.points.length);
-                        });
-                        // alert('mamamia');
-
-                    }
-                }
+				}
 			},
 			title: {
 				text: ''
