@@ -85,9 +85,6 @@ function reader_to_chart(){
 		for(var i = 0, l = Object.keys(reader_out).length, s = false, li, check_topic, cln, a; i < l; i++){
 			li = document.createElement("li");
 			check_topic = Object.keys(reader_out)[i];
-
-			// a
-
 			if(lookup_color(check_topic, colors)){
 				li.style.listStyleType = "disc";
 				//li.style.fontWeight = "bold";
@@ -144,8 +141,7 @@ function reader_to_chart(){
 			}
 		}
 	}
-	a();
-	a = null;
+	a(); a = null;
 	
 	function build_charts_gt_t_by_politics(){
 		
@@ -202,6 +198,8 @@ function reader_to_chart(){
 					return 150 * subtopics.length;
 			}
 			
+			if(data_series[gt].length){
+			document.getElementsByClassName("chart_container")[oi].id = "chart_container_" + gt;
 			charts[gt] = Highcharts.chart(document.getElementsByClassName("chart_container")[oi], {
 				credits: {
 					enabled: false
@@ -273,11 +271,13 @@ function reader_to_chart(){
 					labels: lbls[gt]
 				}]
 			});
+			}
 		}
 		
 		upd_vis();
 
 	}
 	build_charts_gt_t_by_politics();
+
 
 }

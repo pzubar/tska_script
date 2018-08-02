@@ -12,32 +12,34 @@ function reader_to_politics_by_gts(){
         var exclude = ['Общий итог', 'Більша тема', 'Названия строк'];
 
         for (gt in lbls) {
-            sht = reader_out[gt];
-            gt = lookup_grosstopic(gt, colors);
-            gt = gt.charAt(0).toUpperCase() + gt.slice(1);
-            gt_by_pol[gt] = {};
+            if(lbls[gt].length){
+				sht = reader_out[gt];
+				gt = lookup_grosstopic(gt, colors);
+				gt = gt.charAt(0).toUpperCase() + gt.slice(1);
+				gt_by_pol[gt] = {};
 
-            col_a = Object.keys(sht[0])[0];
-            col_b = Object.keys(sht[0])[1];
+				col_a = Object.keys(sht[0])[0];
+				col_b = Object.keys(sht[0])[1];
 
-            subtopics = [];
-            for (var r = 1, l = sht.length; r < l; r++) {
-                if (sht[r][col_a] != 'Общий итог')
-                    subtopics.push(sht[r][col_a]);
-                else
-                    break;
-            }
+				subtopics = [];
+				for (var r = 1, l = sht.length; r < l; r++) {
+					if (sht[r][col_a] != 'Общий итог')
+						subtopics.push(sht[r][col_a]);
+					else
+						break;
+				}
 
-            r++;
-            for (l = sht.length; r < l; r++) {
-                if (!subtopics.includes(sht[r][col_a]) && !exclude.includes(sht[r][col_a])) {
-                    pol = sht[r][col_a];
-                    if (!(pol in gt_by_pol[gt]))
-                        gt_by_pol[gt][pol] = +sht[r][col_b];
-                    else
-                        gt_by_pol[gt][pol] += +sht[r][col_b];
-                }
-            }
+				r++;
+				for (l = sht.length; r < l; r++) {
+					if (!subtopics.includes(sht[r][col_a]) && !exclude.includes(sht[r][col_a])) {
+						pol = sht[r][col_a];
+						if (!(pol in gt_by_pol[gt]))
+							gt_by_pol[gt][pol] = +sht[r][col_b];
+						else
+							gt_by_pol[gt][pol] += +sht[r][col_b];
+					}
+				}
+			}
         }
 
         for (k in gt_by_pol) {
@@ -129,6 +131,9 @@ function reader_to_politics_by_gts(){
 			colors: d[2],
 			chart: {
 				type: 'bar',
+				style: {
+					'fontFamily': '\"Roboto\"',
+				}
 			},
 			title: {
 				text: ''
@@ -139,7 +144,7 @@ function reader_to_politics_by_gts(){
 			yAxis: {
 				min: 0,
 				title: {
-					text: 'К-ть повідомлень по тематиці'
+					text: ''
 				},
 				allowDecimals: false,
 				endOnTick: false

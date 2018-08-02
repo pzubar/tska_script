@@ -35,7 +35,8 @@ var ExcelToJSON = function(e) {
         // charts_to_slides();
         // chart_split();
         // setTimeout(charts_to_slides, 1000);
-        setTimeout(make_slides, 1000);
+        
+		make_slides();
 
 	};
 
