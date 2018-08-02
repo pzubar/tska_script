@@ -197,3 +197,16 @@ body {
 	}
 }
 
+textarea {
+	width: 150px;
+	height: 150px;
+	padding: 12px 20px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	background-color:rgba(0, 0, 0, 0.5);
+	font-size: 16px;
+	resize: none;
+	top: 150px;
+	right: 150px;
+}

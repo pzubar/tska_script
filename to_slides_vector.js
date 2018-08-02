@@ -37,16 +37,31 @@ function copy_plain_charts_outer(elem) {
     var div = document.createElement('div');
     div.className = 'chart_container_slide';
     div.innerHTML = buf;
+    //
     slide.appendChild(elem);
     update_title(slide);
+
+
+
+    // delete_button.innerHTML = "ВИДАЛИТИ ЦЕЙ СЛАЙД";
+    // delete_button.onclick = function() {
+    //     slide.parentNode.removeChild(slide);
+    // };
 
     var  delete_button = document.createElement('button');
     delete_button.innerHTML = "ВИДАЛИТИ ЦЕЙ СЛАЙД";
     delete_button.onclick = function() {
         slide.parentNode.removeChild(slide);
-    }
+    };
     delete_button.className = "no-print";
     slide.appendChild(delete_button);
+
+
+    var input = document.createElement('textarea');
+    input.style.position = 'absolute'
+    input.className += ' draggable';
+    input.style.fontFamily = "Roboto Condensed";
+    slide.appendChild(input);
     slide_i++;
 }
 

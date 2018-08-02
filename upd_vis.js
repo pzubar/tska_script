@@ -2,6 +2,7 @@ function upd_vis(){
 	var a = function(){
 		var j = 0, chart;
 		for(k in charts){
+			console.log(k);
 			chart = charts[k];
 			var mt = chart.margin[0];
 			if(mt === undefined)

@@ -25,17 +25,17 @@ var ExcelToJSON = function(e) {
         try {
             add_bigtopics_chart();
 
-            reader_to_chart();
-            reader_to_politics_by_gts();
-            // charts_to_slides();
-            // chart_split();
-            // setTimeout(charts_to_slides, 1000);
-            setTimeout(make_slides, 1000);
+
 
         } catch (err) {
 			alert(err.message);
         }
-
+        reader_to_chart();
+        reader_to_politics_by_gts();
+        // charts_to_slides();
+        // chart_split();
+        // setTimeout(charts_to_slides, 1000);
+        setTimeout(make_slides, 1000);
 
 	};
 
