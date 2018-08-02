@@ -278,6 +278,17 @@ function reader_to_chart(){
 
 	}
 	build_charts_gt_t_by_politics();
-
-
+	
+	var fix_empty_containers = function(){
+		var c = document.getElementsByClassName("chart_div");
+		var i = 0, l = c.length;
+		while(i < l){
+			if(c[i].querySelector('svg') === null){
+				c[i].remove();
+				i--; l--;
+			}
+			i++;
+		}
+	}();
+	fix_empty_containers = null;
 }
