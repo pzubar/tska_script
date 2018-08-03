@@ -1,4 +1,4 @@
-var glob_d;
+var gt_alphaorder = []; //now a global. lame. anyway
 
 function reader_to_politics_by_gts(){
 	
@@ -6,7 +6,7 @@ function reader_to_politics_by_gts(){
     var get_data;
     get_data = function () {
         var gt_by_pol = {}, pol_sum = {};
-        var arr_pol_sum = [], gt_alphaorder = [], colors_gt_alphaorder = [];
+        var arr_pol_sum = [], colors_gt_alphaorder = [];
         var data_pol_by_gt_stacked = [], cats_pol_topsum = [];
         var sht, col_a, col_b, subtopics, pol;
         var exclude = ['Общий итог', 'Більша тема', 'Названия строк'];
@@ -110,15 +110,16 @@ function reader_to_politics_by_gts(){
     };
 	var d = get_data();
 	get_data = null;
-	glob_d = d;
 	
-	var build_chart = function(cats = undefined, container_div = undefined, data_series = undefined, crt_name = 'gt_by_pol'){
+	var build_chart = function(cats = undefined, container_div = undefined, data_series = undefined, crt_name = 'gt_by_pol', cols = undefined){
 		if(!cats)
 			cats = d[0];
 		if(!container_div)
 			container_div = document.getElementById("gt_by_pol_chart_container_asses");
 		if(!data_series)
 			data_series = d[1];
+		if(!cols)
+			cols = d[2];
 		charts[crt_name] = Highcharts.chart(container_div, {
 			credits: {
 				enabled: false
@@ -128,7 +129,7 @@ function reader_to_politics_by_gts(){
 					enabled: false
 				}
 			},
-			colors: d[2],
+			colors: cols,
 
 			chart: {
 				type: 'bar',
@@ -184,22 +185,38 @@ function reader_to_politics_by_gts(){
 	}
 	build_chart();
 	//build_chart = null;
-
-	var free_empty_obj = function (cd) {
+	
+	// kostyl: takeout topics that are not spoken by these politicians
+	var free_empty_topics = function (cd) {
         for(var i = 0; i < cd.length; i++)
         {
             var elem = cd[i].data;
             for (var a = 0; a < elem.length; a++) {
-                // alert(elem[a].y);
                 if (elem[a].y != 0)
                 	break ;
-                if (elem[a].y == 0 && (a + 1) == elem.length)
-                    cd.splice(i, 1);
+                if (elem[a].y == 0 && (a + 1) == elem.length){
+                    cd.splice(i, 1); i--;
+				}
             }
         }
         return cd;
     };
-
+	
+	// kostyl: also reform the colors array, uses gt_alphaorder as global
+	var reform_colors = function(cd){
+		var topics = [];
+		for(var i = 0, l = cd.length; i < l; i++){
+			topics.push(cd[i].name);
+		}
+		var new_cls = [];
+		for(t in gt_alphaorder){
+			if(~topics.indexOf(gt_alphaorder[t])){
+				new_cls.push(lookup_color(gt_alphaorder[t], colors));
+			}
+		}
+		return new_cls;
+	};
+	
 	var chart_split = function(){
 		var a = this.parentNode.querySelector("#pol_by_gts_split_by_input").value;
 		a = a.split(" ");
@@ -210,8 +227,8 @@ function reader_to_politics_by_gts(){
 		}
 		
 		var last_index = 0;
-		var cs = [], cds = [];
-		for(var i = 0, l = a.length, c, cd; i < l; i++){
+		var cs = [], cds = [], cols_cls = [];
+		for(var i = 0, l = a.length, c, cd, cls; i < l; i++){
 			c = d[0].slice(last_index, last_index + Number(a[i]));
 			cs.push(c);
 			
@@ -222,16 +239,18 @@ function reader_to_politics_by_gts(){
 					data: d[1][j].data.slice(last_index, last_index + Number(a[i]))
 				});
 			}
-
-			cd = free_empty_obj(cd);
+			
+			cd = free_empty_topics(cd);
 			cds.push(cd);
+			cls = reform_colors(cd);
+			cols_cls.push(cls);
 			last_index += Number(a[i]);
 			
 			if(i)
 				document.getElementsByClassName("gt_by_pol_chart_container")[i].style.height = (130 + c.length * 40) + "px";
 			else
 				document.getElementsByClassName("gt_by_pol_chart_container")[i].style.height = "312px";
-			build_chart(c, document.getElementsByClassName("gt_by_pol_chart_container")[i], cd, 'gt_by_pol_' + i);
+			build_chart(c, document.getElementsByClassName("gt_by_pol_chart_container")[i], cd, 'gt_by_pol_' + i, cls);
 			document.getElementsByClassName("gt_by_pol_chart_container")[i].id = "gt_by_pol_" + i;
 		}
 		
@@ -246,7 +265,7 @@ function reader_to_politics_by_gts(){
 			if(this.className == "set_stacked_bar_width_orig_btn")
 				w = 1200;
 			container.style.width = w +"px";
-			build_chart(cs[cid], container, cds[cid], container.id);
+			build_chart(cs[cid], container, cds[cid], container.id, cols_cls[cid]);
 			
 			if(this.className != "set_stacked_bar_width_orig_btn"){
 				chart = charts[container.id];
