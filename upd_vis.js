@@ -102,6 +102,7 @@ function upd_vis(){
 			}
 			if(chart.series[0].data[i].shapeArgs.height < data_label_height){
 				data_series[gt][i].dataLabels.color = '#666666';
+                data_series[gt][i].dataLabels.y = 5;
 			}
 		}
 		chart.update({
