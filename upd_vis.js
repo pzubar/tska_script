@@ -141,7 +141,8 @@ function upd_vis(){
 			}}
 		});
 		fixup_labels_above_xaxis(gt);
-	}
+        g_infolog.innerHTML += gt + " додано до " + scalebygt + "\n";
+    }
 	a = document.getElementsByClassName("apply_scalebygt");
 	for(i in a){
 		a[i].onclick = scale_by_gt;

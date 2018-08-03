@@ -25,6 +25,12 @@ function add_bigtopics_slide() {
     slide_i++;
 }
 
+function set_cover_subtitle() {
+    var subt_container = document.querySelector('.cover-subtitle');
+
+    subt_container.innerHTML = bigCategories[0] + ' — ' + bigCategories[bigCategories.length - 1];
+}
+
 function copy_plain_charts_outer(elem) {
     var slide = slides[slide_i];
 
@@ -87,9 +93,9 @@ function make_slides() {
         // print_divs.push(i.toString());
         slides_container.appendChild(slides[i]);
     }
+    set_cover_subtitle();
 
     add_bigtopics_slide();
-
     var keypolitics = document.getElementsByClassName('gt_by_pol_chart_div');
     for (var i = 0; i < keypolitics.length; i++) {
         copy_plain_charts_outer(keypolitics[i]);

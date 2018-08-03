@@ -37,7 +37,7 @@ var ExcelToJSON = function(e) {
         } catch (err) {
             g_infolog.innerHTML += "Сталася помилка при створенні слайдів";
         }
-        g_infolog.innerHTML += "Слайди створено";
+        g_infolog.innerHTML += "Слайди створено\n";
         // alert('Слайди побудовано');
 	};
 

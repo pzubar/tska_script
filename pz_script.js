@@ -1,3 +1,5 @@
+var bigCategories = [];
+
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -11,7 +13,6 @@ function add_bigtopics_chart() {
     fix_topics_colors();
     var bigTopics = reader_out['Розподіл за темами великими'];
     // var bigname = "Розподіл за темами великими";
-    var bigCategories = [];
 
     bigTopics.forEach(function (item, i, bigTopics) {
         delete item['(пусто)'];
