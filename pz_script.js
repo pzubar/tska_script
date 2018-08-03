@@ -1,3 +1,11 @@
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
 function add_bigtopics_chart() {
 
@@ -31,13 +39,19 @@ function add_bigtopics_chart() {
 
     var bigSeriesNames = Object.keys(bigTopics[0]);
 
-    delete bigSeriesNames[12]; // костыль - убираем 'общий итог'
-
+    for(var f in bigSeriesNames) {
+        if(bigSeriesNames[f] == 'Общий итог') {
+            delete bigSeriesNames[f];
+        }
+    }
 
     bigSeriesNames.forEach(function (item, i) {
         bigSeries[i] = new Object();
         bigSeries[i].name = item;
         bigSeries[i].color = lookup_color(item, colors);
+        //setting random color if false
+        if (bigSeries[i].color == false)
+            bigSeries[i].color = getRandomColor();
         bigSeries[i].data = [];
 
         for (var a = 0; a < bigTopics.length; a++) {
