@@ -51,7 +51,10 @@ body {
 	padding: 16px;
 }
 
-
+.slide-subtitle {
+	margin-left: 25px;
+	font-size: 24px;
+}
 .sticky {
 	position: fixed;
 	top: 0;
