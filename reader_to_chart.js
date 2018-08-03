@@ -54,11 +54,15 @@ function fix_topics_colors(){
 	var sht = reader_out['Список тем'];
 	// while there is column 'B' (blue), e.g. iterate through data from columns J-M, sheet 'Список тем'
 	var l = sht.length, i = 0;
-	while(i < l && 'B' in sht[i]){
+	while(i < l && 'Велика тема' in sht[i]){
 		// if this topic is not in colors global variable then add it + colors R G B
 		if(!lookup_color(sht[i]['Велика тема'].toLowerCase(), colors)){
-			colors.push([[sht[i]['Велика тема']], 
-			 'rgb(' + [sht[i]['R'], sht[i]['G'], sht[i]['B']].join() + ')']);
+			if (sht[i]['R'] == undefined)
+                colors.push([[sht[i]['Велика тема']],
+                    getRandomColor()]);
+			else
+				colors.push([[sht[i]['Велика тема']],
+				 'rgb(' + [sht[i]['R'], sht[i]['G'], sht[i]['B']].join() + ')']);
 		}
 		i++;
 	}
@@ -66,7 +70,7 @@ function fix_topics_colors(){
 
 
 function reader_to_chart(){
-	fix_topics_colors();
+	// fix_topics_colors();
 	
 	var grosstopics = [];
 	var topic_sheets = [];

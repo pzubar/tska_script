@@ -8,9 +8,9 @@ function getRandomColor() {
 }
 
 function add_bigtopics_chart() {
-
+    fix_topics_colors();
     var bigTopics = reader_out['Розподіл за темами великими'];
-    var bigname = "Розподіл за темами великими";
+    // var bigname = "Розподіл за темами великими";
     var bigCategories = [];
 
     bigTopics.forEach(function (item, i, bigTopics) {
@@ -50,8 +50,8 @@ function add_bigtopics_chart() {
         bigSeries[i].name = item;
         bigSeries[i].color = lookup_color(item, colors);
         //setting random color if false
-        if (bigSeries[i].color == false)
-            bigSeries[i].color = getRandomColor();
+        // if (bigSeries[i].color == false)
+            // bigSeries[i].color = getRandomColor();
         bigSeries[i].data = [];
 
         for (var a = 0; a < bigTopics.length; a++) {
