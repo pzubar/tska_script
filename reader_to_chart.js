@@ -226,7 +226,9 @@ function reader_to_chart(){
 				},
 				
 				title: {
-					text: ''
+                	useHTML:true,
+					text: '',
+                	widthAdjust: -2000
 				},
 				
 				xAxis: {

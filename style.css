@@ -191,3 +191,13 @@ body {
 	/*width: auto!important;*/
 }
 
+.highcharts-title {
+	width: max-content;
+}
+.highcharts-container {
+	overflow: visible!important;
+}
+
+.highcharts-root {
+	overflow: visible;
+}

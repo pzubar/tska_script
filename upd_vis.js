@@ -152,7 +152,7 @@ function upd_vis(){
     function add_to_ch(){
 
 
-        var curtitle = this.parentNode.querySelector(".gt_h3");
+		var curtitle = this.parentNode.querySelector(".gt_h3");
 		var cur = this.parentNode.querySelector(".highcharts-container");//.textContent;
 		var addto = this.parentNode.querySelector(".add-to-chart").value;
 		// var scalebutton =  this.parentNode.querySelector(".apply_scalebygt");

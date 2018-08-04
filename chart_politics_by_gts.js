@@ -141,7 +141,13 @@ function reader_to_politics_by_gts(){
 				text: ''
 			},
 			xAxis: {
-				categories: cats //d[0]					//politicians names
+				categories: cats,
+                labels: {
+                    useHTML: true,
+					style: {
+                        fontSize: '13px'
+					}
+                }//d[0]					//politicians names
 			},
 			yAxis: {
 				min: 0,
@@ -152,7 +158,11 @@ function reader_to_politics_by_gts(){
 				endOnTick: false
 			},
 			legend: {
-				reversed: true
+				reversed: true,
+                itemStyle: {
+                    color: '#000000',
+                    fontWeight: 'regular'
+                }
 			},
 			plotOptions: {
 				bar: {
