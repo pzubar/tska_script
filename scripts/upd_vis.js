@@ -169,7 +169,7 @@ function upd_vis(){
         var addto_container;
 
         for (var i = 0; i < titles.length; i++) {
-            if (titles[i].textContent == addto)
+            if (titles[i].textContent.toUpperCase().includes(addto.toUpperCase()))
 			{
                 titles[i].textContent += " та " + curtitle.textContent;
                 addto_container = titles[i].parentNode;

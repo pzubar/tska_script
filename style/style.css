@@ -201,3 +201,7 @@ body {
 .highcharts-root {
 	overflow: visible;
 }
+.deletebutton {
+	background-color: darkred;
+	color: #fff;
+}

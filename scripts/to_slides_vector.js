@@ -62,7 +62,7 @@ function copy_plain_charts_outer(elem) {
     delete_button.onclick = function() {
         slide.parentNode.removeChild(slide);
     };
-    delete_button.className = "no-print";
+    delete_button.className = "no-print deletebutton";
     slide.appendChild(delete_button);
 
     var  mvupbtn = document.createElement('button');
