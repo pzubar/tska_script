@@ -31,6 +31,21 @@ function set_cover_subtitle() {
     subt_container.innerHTML = bigCategories[0] + ' — ' + bigCategories[bigCategories.length - 1];
 }
 
+function move_slide_up() {
+    var prevSlide = this.parentNode.previousSibling;//querySelector(".gt_h3");
+    var thisSlide = this.parentNode;
+
+    this.parentNode.parentNode.insertBefore(thisSlide, prevSlide);
+}
+
+function move_slide_down() {
+    var nextSlide = this.parentNode.nextSibling;//querySelector(".gt_h3");
+    var thisSlide = this.parentNode;
+
+    this.parentNode.parentNode.insertBefore(nextSlide, thisSlide);
+}
+
+
 function copy_plain_charts_outer(elem) {
     var slide = slides[slide_i];
 
@@ -50,9 +65,20 @@ function copy_plain_charts_outer(elem) {
     delete_button.className = "no-print";
     slide.appendChild(delete_button);
 
-    // if gt_by_pol_chart_div
-    if (elem.classList.contains('chart_div'))
-    {
+    var  mvupbtn = document.createElement('button');
+    mvupbtn.innerHTML = "ПЕРЕМІСТИТИ СЛАЙД ВГОРУ";
+    mvupbtn.onclick = move_slide_up;
+    mvupbtn.className = "no-print";
+    slide.appendChild(mvupbtn);
+
+    var  mvupbtn = document.createElement('button');
+    mvupbtn.innerHTML = "ПЕРЕМІСТИТИ СЛАЙД ВНИЗ";
+    mvupbtn.onclick = move_slide_down;
+    mvupbtn.className = "no-print";
+    slide.appendChild(mvupbtn);
+
+
+    if (elem.classList.contains('chart_div')) {
         add_textarea(slide);
     }
     slide_i++;

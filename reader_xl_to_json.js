@@ -26,7 +26,7 @@ var ExcelToJSON = function(e) {
         try {
             add_bigtopics_chart();
         } catch (err) {
-            g_infolog.innerHTML += "Неможливо побудувати діаграму розподілу за великими політиками. Перевірте наявність відповідного аркуша";
+            // g_infolog.innerHTML += "Неможливо побудувати діаграму розподілу за великими політиками. Перевірте наявність відповідного аркуша";
         }
         reader_to_chart();
         reader_to_politics_by_gts();
@@ -35,9 +35,9 @@ var ExcelToJSON = function(e) {
         try {
             make_slides();
         } catch (err) {
-            g_infolog.innerHTML += "Сталася помилка при створенні слайдів";
+            // g_infolog.innerHTML += "Сталася помилка при створенні слайдів";
         }
-        g_infolog.innerHTML += "Слайди створено\n";
+        // g_infolog.innerHTML += "Слайди створено\n";
         // alert('Слайди побудовано');
 	};
 

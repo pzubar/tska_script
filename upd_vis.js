@@ -142,15 +142,22 @@ function upd_vis(){
 			}}
 		});
 		fixup_labels_above_xaxis(gt);
-        g_infolog.innerHTML += gt + " додано до " + scalebygt + "\n";
+        // g_infolog.innerHTML += gt + " додано до " + scalebygt + "\n";
     }
 	a = document.getElementsByClassName("apply_scalebygt");
 	for(i in a){
 		a[i].onclick = scale_by_gt;
 	}
 
-    function add_to_ch(){
 
+
+    // var mvupbtn = document.getElementsByClassName("move_up");
+    // for(i in pz){
+    //     // a[i].onclick = scale_by_gt;
+    //     mvupbtn[i].onclick = add_to_ch;
+    // }
+
+    function add_to_ch(){
 
 		var curtitle = this.parentNode.querySelector(".gt_h3");
 		var cur = this.parentNode.querySelector(".highcharts-container");//.textContent;
@@ -219,10 +226,12 @@ function upd_vis(){
                         title: {text: grosstopic},
                         chart: {marginTop: mt + mt_delta}
                     });
-
-
+                    // alert(this.parentNode.querySelector('.highcharts-title').innerHTML)
 				}
-
+                var titles = this.parentNode.getElementsByClassName('highcharts-title');
+                for (var i = 0; i < titles.length; i++) {
+                    titles[i].className += " draggable";
+                }
 			}
 		}
 	}
