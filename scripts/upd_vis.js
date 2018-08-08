@@ -129,6 +129,7 @@ function upd_vis(){
 			var buf = chart;
 			chart = scalebychart;
 			scalebychart = buf;
+			buf = gt; gt = scalebygt; scalebygt = buf;
 		}
 
 		chart.update({
