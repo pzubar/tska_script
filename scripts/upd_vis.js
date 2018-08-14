@@ -223,16 +223,26 @@ function upd_vis(){
                     }
                     var mt = chart.margin[0];
                     mt == undefined ? mt = 10 : mt = mt;
+                    // alert(mt);
+                    // alert(chart.annotations[0].labels[0].alignAttr.y);
+
+					//!!!!Changing small charts titles positioning
+
+					// var lowerPos = 5;
+                    // if (chart.annotations[0].labels[0].alignAttr.y - 15 > 0)
+                    //     lowerPos = chart.annotations[0].labels[0].alignAttr.y - 15;
+
+                    // var lowerPos = y:chart.annotations[0].labels[0].alignAttr.y - 7
                     chart.update({
                         title: {text: grosstopic},
                         chart: {marginTop: mt + mt_delta}
                     });
                     // alert(this.parentNode.querySelector('.highcharts-title').innerHTML)
 				}
-                var titles = this.parentNode.getElementsByClassName('highcharts-title');
-                for (var i = 0; i < titles.length; i++) {
-                    titles[i].className += " draggable";
-                }
+                // var titles = this.parentNode.getElementsByClassName('highcharts-title');
+                // for (var i = 0; i < titles.length; i++) {
+                //     titles[i].className += " draggable";
+                // }
 			}
 		}
 	}

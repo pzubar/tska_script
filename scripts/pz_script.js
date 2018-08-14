@@ -75,11 +75,11 @@ function add_bigtopics_chart() {
             verticalAlign: 'top',
             layout: 'vertical',
             x: 0,
-            y: 100,
+            y: 0,
             itemStyle: {
                 color: '#000000',
                 fontWeight: 'bold',
-                fontSize: '14px'
+                fontSize: '13px'
             }
         },
         xAxis: {
