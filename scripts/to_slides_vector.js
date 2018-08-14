@@ -86,8 +86,8 @@ function copy_plain_charts_outer(elem) {
 
 function add_textarea(slide) {
     var input = document.createElement('div');
-    input.style.position = 'absolute'
-    input.className += 'textarea draggable';
+    // input.style.position = 'absolute';
+    input.className += 'textarea';
     input.innerHTML += ' Кількість повідомлень, ініційованих політиками, у вибірці топ-10 інтернет-медіа, на центральному телебаченні та у центральній пресі';
     input.style.fontFamily = "Roboto Condensed";
     slide.appendChild(input);

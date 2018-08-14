@@ -2,11 +2,6 @@ body {
 	font-family: "Roboto Condensed";
 
 }
-
-/*body > :not(#slides){*/
-	/*display: none;*/
-/*}*/
-
 @media only screen {
 	#navbar {
 		overflow: hidden;
@@ -14,7 +9,6 @@ body {
 		z-index: 99;
 		display: block!important;
 	}
-
 	/* Navbar links */
 	#navbar a, #navbar input {
 		float: left;
@@ -28,7 +22,7 @@ body {
 		background-color: lightgray;
 	}
 	.slide {
-		margin: 10px auto;
+		/*margin: 10px auto;*/
 	}
 	div.infolog {
 		position: -webkit-sticky;
@@ -46,13 +40,11 @@ body {
 	}
 }
 
-
 .content {
 	padding: 16px;
 }
 
 .slide-subtitle {
-	margin-left: 25px;
 	font-size: 24px;
 }
 .sticky {
@@ -69,8 +61,6 @@ body {
 	width: 90%;
 	max-width: 1640px;
 	height: 85vh;
-
-	/*margin: 0px auto;*/
 	background-color: gray;
     overflow-y: scroll;
 }
@@ -78,7 +68,6 @@ body {
 .slide {
 	width: 1285px;
 	height: 720px;
-	margin: 0px auto;
 	background-color: white;
 	position: relative;
 	border: 1px solid black;
@@ -88,11 +77,19 @@ body {
 }
 
 .slide-title {
-	margin-top: 25px;
-	margin-left: 25px;
+	padding-top: 25px;
+	padding-left: 25px;
+	/*position: absolute;*/
+	/*top: 25px;*/
+	/*left: 25px;*/
 	font-size: 32px;
 }
-
+.slide-subtitle {
+	/*position: absolute;*/
+	/*top: 65px;*/
+	/*left: 25px;*/
+	padding-left: 25px;
+}
 .slide-chart svg {
 	width: 100%;
 }
@@ -114,24 +111,27 @@ body {
 	top: 50px;
 	left: 50px;
 }
+
 .cover-info {
 	flex-basis: 50%;
 }
+
 .textpart {
 	/*position: absolute;*/
 	/*top: 200px;*/
 	width: 90%;
 	margin: 200px auto;
 }
+
 .cover-title {
 	color: #379CB7;
 	font-size: 48px;
 }
+
 .top-part {
 	position: absolute;
 	right: 50px;
 	top: 0px;
-
 }
 
 .top-logo img{
@@ -139,7 +139,6 @@ body {
 	float: right;
 	height: 50px;
 }
-
 
 .slide p{
 	display: inline-block;
@@ -159,7 +158,10 @@ body {
 }
 
 #bigtopics-container, .chart_container {
-	margin-top: 120px!important;
+	/*margin-top: 120px!important;*/
+	/*position: absolute;*/
+	/*top:120px;*/
+	/*left:25px;*/
 }
 
 .gt_by_pol_chart_div {
@@ -172,11 +174,11 @@ body {
 	position:absolute!important;
 }
 
-
 .textarea {
 	width: 300px;
-	height:auto;
-	padding: 12px 20px;
+	height: auto;
+	margin-left: 25px;
+	/*padding: 12px 20px;*/
 	box-sizing: border-box;
 	border: 2px solid #ccc;
 	border-radius: 4px;
@@ -189,6 +191,8 @@ body {
 
 .gt_by_pol_chart_container {
 	/*width: auto!important;*/
+	/*position: absolute;*/
+	/*top: 100px;*/
 }
 
 .highcharts-title {
@@ -204,4 +208,14 @@ body {
 .deletebutton {
 	background-color: darkred;
 	color: #fff;
+}
+
+#bigtopics-container {
+	/*position: absolute;*/
+	/*top: 120px;*/
+	/*left: 25px;*/
+	padding-top: 45px;
+}
+.chart_div {
+	padding-top: 25px!important;
 }
