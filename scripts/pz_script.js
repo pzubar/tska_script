@@ -77,7 +77,7 @@ function add_bigtopics_chart() {
             x: 0,
             y: 0,
             itemStyle: {
-                color: '#000000',
+                color: '#333333',
                 fontWeight: 'bold',
                 fontSize: '13px'
             }
