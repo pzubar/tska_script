@@ -214,12 +214,12 @@ function upd_vis(){
                     gt = topicsonslide[i];
 					var grosstopic = lookup_grosstopic(gt, colors);
                     grosstopic = grosstopic.charAt(0).toUpperCase() + grosstopic.slice(1);
-                    var mt_delta = 36;
+                    var mt_delta = 40;
 
                     var chart = charts[gt];
                     if(chart.title.element.textContent){
                         grosstopic = '';
-                        mt_delta = -36;
+                        mt_delta = -40;
                     }
                     var mt = chart.margin[0];
                     mt == undefined ? mt = 10 : mt = mt;
@@ -228,13 +228,14 @@ function upd_vis(){
 
 					//!!!!Changing small charts titles positioning
 
-					// var lowerPos = 5;
-                    // if (chart.annotations[0].labels[0].alignAttr.y - 15 > 0)
-                    //     lowerPos = chart.annotations[0].labels[0].alignAttr.y - 15;
+					var lowerPos = 5;
+                    if (chart.annotations[0].labels[0].alignAttr.y - 15 > 0)
+                        lowerPos = chart.annotations[0].labels[0].alignAttr.y - 15;
+                    // alert(lowerPos);
 
                     // var lowerPos = y:chart.annotations[0].labels[0].alignAttr.y - 7
                     chart.update({
-                        title: {text: grosstopic},
+                        title: {text: grosstopic, y:lowerPos},
                         chart: {marginTop: mt + mt_delta}
                     });
                     // alert(this.parentNode.querySelector('.highcharts-title').innerHTML)
