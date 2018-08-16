@@ -259,10 +259,9 @@ function reader_to_chart(){
 							style: {
 								textOutline: 'none',
 							}
-						}
-
-						
-					}
+						},		
+					},
+					
 				},
 				series: [{
 					showInLegend: false,

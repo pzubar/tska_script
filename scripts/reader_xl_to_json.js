@@ -28,9 +28,9 @@ var ExcelToJSON = function(e) {
         } catch (err) {
             // g_infolog.innerHTML += "Неможливо побудувати діаграму розподілу за великими політиками. Перевірте наявність відповідного аркуша";
         }
-        reader_to_chart();
-        reader_to_politics_by_gts();
-        
+        reader_to_chart();	// defined in reader_to_chart.js, this itself calls functions defined in upd_vis.js
+        reader_to_politics_by_gts(); // defined in chart_politics_by_gts.js
+        reader_to_politics_top_statements(); // defined in chart_politics_top_statements.js
 
         try {
             make_slides();
