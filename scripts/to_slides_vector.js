@@ -8,7 +8,14 @@ function update_title(slide, text) {
         var title_a = head.textContent;
     else if (text)
         title_a = text;
-    else
+	else if (slide.querySelector('.politics_top_statements_div') !== null){
+		title_a = 'КЛЮЧОВІ МЕСЕДЖІ ТОП-5* ПОЛІТИКІВ';
+		slide.querySelector('.slide-subtitle').textContent = '';
+		var p = slide.querySelector('.politics_top_statements_container').getAttribute('politician');
+		p = p.toUpperCase();
+		slide.querySelector('h3').textContent = p;
+		slide.querySelector('.politics_top_statements_container').style.removeProperty('border');
+	}else
         title_a = "Тематика заяв ключових політиків";
     var title = slide.querySelector(".slide-title");
     title.innerHTML = title_a.toUpperCase();
@@ -101,7 +108,7 @@ function make_slides() {
     var slidesno = document.getElementsByClassName('gt_by_pol_chart_div').length;
     slidesno += document.getElementsByClassName('chart_div').length;
     slidesno += 1; // + second slide
-
+	slidesno += document.getElementsByClassName('politics_top_statements_div').length;
 
     var slide = slides_container.children[1].children[0];
     //
@@ -130,5 +137,10 @@ function make_slides() {
     var chartdiv = document.getElementsByClassName('chart_div');
     for (var i = 0; i < chartdiv.length; i++) {
         copy_plain_charts_outer(chartdiv[i]);
+    }
+	
+	var chart_top_statements = document.getElementsByClassName('politics_top_statements_div');
+	for (var i = 0; i < chart_top_statements.length; i++) {
+        copy_plain_charts_outer(chart_top_statements[i]);
     }
 }

@@ -172,7 +172,7 @@ function upd_vis(){
         for (var i = 0; i < titles.length; i++) {
             if (titles[i].textContent.toUpperCase().includes(addto.toUpperCase()))
 			{
-                titles[i].textContent += " та " + curtitle.textContent;
+                titles[i].textContent += "; " + curtitle.textContent;
                 addto_container = titles[i].parentNode;
                 break ;
 			}
