@@ -182,6 +182,10 @@ function upd_vis(){
         addto_container = addto_container[0];
 		// alert(addto_container.children[0].id);
         addto_container.appendChild(cur);
+		
+		addto_container.parentElement.parentElement.scrollIntoView();
+		this.parentElement.parentElement.querySelector('.deletebutton').click();
+		
     }
     a = document.getElementsByClassName("apply_scalebygt");
     for(i in a){

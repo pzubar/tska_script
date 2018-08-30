@@ -156,8 +156,21 @@ function reader_to_politics_top_statements(){
 		build_chart(chart_name, container_div, chart_data, statements);
 	}
 	build_chart = null;
+	
+	// kind of upd vis
 	var top_statements_charts = document.querySelectorAll('.politics_top_statements_container .highcharts-container ');
 	for(var i = 0, l = top_statements_charts.length; i < l; i++){
 		top_statements_charts[i].style.margin = '0 auto';
 	} top_statements_charts = null;
+	
+	var pol_s = document.getElementsByClassName('politics_top_statements_container');
+	for(var i = 0, l = pol_s.length; i < l; i++){
+		var a = pol_s[i].parentElement.querySelector('select');
+		for(var j  = 0; j < l; j++){
+			var b = document.createElement("option");
+			b.setAttribute("value", 'statements_' + pol_s[j].getAttribute('politician'));
+			b.textContent = 'statements_' + pol_s[j].getAttribute('politician');
+			a.appendChild(b);
+		}
+	}
 }

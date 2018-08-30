@@ -85,7 +85,7 @@ function copy_plain_charts_outer(elem) {
     slide.appendChild(mvupbtn);
 
 
-    if (elem.classList.contains('chart_div')) {
+    if (elem.classList.contains('chart_div') || elem.classList.contains('politics_top_statements_div')) {
         add_textarea(slide);
     }
     slide_i++;
