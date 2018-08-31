@@ -73,10 +73,10 @@ function reader_to_politics_top_statements(){
 	}(); prep_containers = null;
 	
 	function calc_width(){
-		if(200 * statements.length > 1380)
+		if(168 * statements.length > 1380)		//200
 			return 1380;
 		else
-			return 200 * statements.length;
+			return 168 * statements.length;
 	}
 	
 	// build charts
@@ -154,6 +154,7 @@ function reader_to_politics_top_statements(){
 		var statements = d[p][1]['statements'];
 		
 		build_chart(chart_name, container_div, chart_data, statements);
+		data_series[chart_name] = chart_data;
 	}
 	build_chart = null;
 	
@@ -162,6 +163,72 @@ function reader_to_politics_top_statements(){
 	for(var i = 0, l = top_statements_charts.length; i < l; i++){
 		top_statements_charts[i].style.margin = '0 auto';
 	} top_statements_charts = null;
+	
+	//modified add_to_ch
+	function add_to_ch_statements(){
+		//own scale_by_gt
+		function scale_by_gt_statements(p_this, p_addto){
+			var gt = 'statements_' + p_this;
+			var scalebygt = 'statements_' + p_addto;
+			var chart = charts[gt];
+			var scalebychart = charts[scalebygt];
+			
+			var yMaxOriginal = (data_series[gt][0]).y;
+			var yMaxTarget = (data_series[scalebygt][0]).y;
+
+			if (yMaxOriginal > yMaxTarget) {
+				var buf = chart;
+				chart = scalebychart;
+				scalebychart = buf;
+				buf = gt; gt = scalebygt; scalebygt = buf;
+			}
+			
+			chart.update({
+				yAxis: {max: scalebychart.yAxis[0].max},
+				chart: {
+					marginTop: scalebychart.margin[0],
+					marginBottom: scalebychart.marginBottom
+				},
+				plotOptions: {series: {
+					pointWidth: Math.ceil(scalebychart.series[0].columnMetrics.width)
+				}}
+			});
+		}
+		
+		var p_this = this.parentElement.querySelector('.politics_top_statements_container').getAttribute('politician');
+		var cur = this.parentNode.querySelector('.highcharts-container');
+		
+		var p_addto = this.parentNode.querySelector(".add-to-chart").value;
+		var p_addto = p_addto.slice(11);
+
+		var targs = document.getElementsByClassName('politics_top_statements_container');
+		var addto_container;
+
+		for (var i = 0; i < targs.length; i++) {
+			if (targs[i].getAttribute('politician') == p_addto)
+			{
+				addto_container = targs[i];
+				break ;
+			}
+		}
+		
+		addto_container.style.textAlign = 'center';
+		addto_container.appendChild(cur);
+		cur.style.display = 'inline-block';
+		var addto_hc_c = addto_container.querySelector('.highcharts-container');
+		addto_hc_c.style.display = 'inline-block';
+		
+		var h = addto_container.parentElement.querySelector('h3');
+		addto_hc_c.insertBefore(h, addto_hc_c.firstChild);
+		
+		h = this.parentElement.querySelector('h3');
+		cur.insertBefore(h, cur.firstChild);
+		
+		addto_container.parentElement.parentElement.scrollIntoView();
+		this.parentElement.parentElement.querySelector('.deletebutton').click();
+		
+		scale_by_gt_statements(p_this, p_addto);
+	}
 	
 	var pol_s = document.getElementsByClassName('politics_top_statements_container');
 	for(var i = 0, l = pol_s.length; i < l; i++){
@@ -172,5 +239,7 @@ function reader_to_politics_top_statements(){
 			b.textContent = 'statements_' + pol_s[j].getAttribute('politician');
 			a.appendChild(b);
 		}
+		var btn = pol_s[i].parentElement.querySelector('.apply-add-to-chart');
+		btn.onclick = add_to_ch_statements;
 	}
 }

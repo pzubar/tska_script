@@ -41,11 +41,27 @@
 <body>
 	<link rel="stylesheet" href="style/style.css">
 
-
+	<script>
+		function print_action(){
+			var a = document.getElementsByClassName('highcharts-point-hover');
+			var l = a.length;
+			while(l){
+				document.getElementsByClassName('highcharts-point-hover')[0].classList.remove('highcharts-point-hover');
+				l--;
+			};
+			var a = document.getElementsByClassName('highcharts-series-hover');
+			var l = a.length;
+			while(l){
+				document.getElementsByClassName('highcharts-series-hover')[0].classList.remove('highcharts-series-hover');
+				l--;
+			};
+			window.print();
+		}
+	</script>
 	<div id="navbar" class="no-print">
 		<input type="file" onchange="ExcelToJSON(event)" />
 		<!--<a href="#news" onclick="make_slides();">Сформувати презентацію</a>-->
-		<a onclick="window.print();">Завантажити презентацію</a>
+		<a onclick="print_action()">Завантажити презентацію</a>
 	</div>
 
 	<div id="slides" class="print" contenteditable="true">
@@ -151,7 +167,7 @@
 	
 	<div class="politics_top_statements_div">
 		<h3 style="text-align: center; font-family: 'Roboto Condensed'">Ключові меседжі топ-5 політиків</h3>
-		<div class="politics_top_statements_container" style="width: 1100px; height: 400px; margin: 0 auto; border: 1px dashed lightgray"></div>
+		<div class="politics_top_statements_container" style="width: 1100px; height: 420px; margin: 0 auto; border: 1px dashed lightgray"></div>
 		<span class="no-print">Додати до:</span>
 		<select class="no-print add-to-chart add-to-chart-polstatements"></select>
 		<button class="no-print apply-add-to-chart">Add</button>

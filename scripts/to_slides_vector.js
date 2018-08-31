@@ -96,7 +96,11 @@ function add_textarea(slide) {
     // input.style.position = 'absolute';
     input.className += 'textarea';
     input.innerHTML += ' Кількість повідомлень, ініційованих політиками, у вибірці топ-10 інтернет-медіа, на центральному телебаченні та у центральній пресі';
-    input.style.fontFamily = "Roboto Condensed";
+    if(slide.querySelector('.politics_top_statements_container') !== null){
+		input.innerHTML = '* - за кількістю повідомлень';
+		input.style.marginTop = '60px';
+	}
+	input.style.fontFamily = "Roboto Condensed";
     slide.appendChild(input);
 }
 

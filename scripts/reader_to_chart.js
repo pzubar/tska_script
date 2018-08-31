@@ -262,6 +262,14 @@ function reader_to_chart(){
 						},		
 					},
 					
+					series: {
+						states: {
+							hover: {
+								enabled: false
+							}
+						}
+					},
+					
 				},
 				series: [{
 					showInLegend: false,

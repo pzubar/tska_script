@@ -1,4 +1,34 @@
 function upd_vis(){
+	function add_to_ch(){
+
+		var curtitle = this.parentNode.querySelector(".gt_h3");
+		var cur = this.parentNode.querySelector(".highcharts-container");//.textContent;
+		var addto = this.parentNode.querySelector(".add-to-chart").value;
+		// var scalebutton =  this.parentNode.querySelector(".apply_scalebygt");
+		// scalebutton.click();
+		scale_by_gt(this);
+		var titles = document.getElementsByClassName('gt_h3');
+		var addto_container;
+
+		for (var i = 0; i < titles.length; i++) {
+			if (titles[i].textContent.toUpperCase().includes(addto.toUpperCase()))
+			{
+				titles[i].textContent += "; " + curtitle.textContent;
+				addto_container = titles[i].parentNode;
+				break ;
+			}
+		}
+		update_title(addto_container.parentNode);
+		addto_container = addto_container.getElementsByClassName('chart_container');
+		addto_container = addto_container[0];
+		// alert(addto_container.children[0].id);
+		addto_container.appendChild(cur);
+		
+		addto_container.parentElement.parentElement.scrollIntoView();
+		this.parentElement.parentElement.querySelector('.deletebutton').click();
+	
+	}
+	
 	var a = function(){
 		var chart;
 		for(k in charts){
@@ -158,35 +188,6 @@ function upd_vis(){
     //     mvupbtn[i].onclick = add_to_ch;
     // }
 
-    function add_to_ch(){
-
-		var curtitle = this.parentNode.querySelector(".gt_h3");
-		var cur = this.parentNode.querySelector(".highcharts-container");//.textContent;
-		var addto = this.parentNode.querySelector(".add-to-chart").value;
-		// var scalebutton =  this.parentNode.querySelector(".apply_scalebygt");
-		// scalebutton.click();
-        scale_by_gt(this);
-        var titles = document.getElementsByClassName('gt_h3');
-        var addto_container;
-
-        for (var i = 0; i < titles.length; i++) {
-            if (titles[i].textContent.toUpperCase().includes(addto.toUpperCase()))
-			{
-                titles[i].textContent += "; " + curtitle.textContent;
-                addto_container = titles[i].parentNode;
-                break ;
-			}
-        }
-        update_title(addto_container.parentNode);
-		addto_container = addto_container.getElementsByClassName('chart_container');
-        addto_container = addto_container[0];
-		// alert(addto_container.children[0].id);
-        addto_container.appendChild(cur);
-		
-		addto_container.parentElement.parentElement.scrollIntoView();
-		this.parentElement.parentElement.querySelector('.deletebutton').click();
-		
-    }
     a = document.getElementsByClassName("apply_scalebygt");
     for(i in a){
         a[i].onclick = scale_by_gt;
