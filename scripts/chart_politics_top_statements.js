@@ -111,7 +111,12 @@ function reader_to_politics_top_statements(){
 				
 				xAxis: {
 					categories: statements,
-					crosshair: true
+					crosshair: true,
+					labels: {
+						style: {
+							fontSize: '13.5px',
+						}
+					}
 				},
 				yAxis: {
 					visible: false
@@ -131,6 +136,7 @@ function reader_to_politics_top_statements(){
 							color: 'white',
 							style: {
 								textOutline: 'none',
+								fontSize: '13.5px',
 							}
 						},		
 					},

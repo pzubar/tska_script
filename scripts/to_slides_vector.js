@@ -14,6 +14,9 @@ function update_title(slide, text) {
 		var p = slide.querySelector('.politics_top_statements_container').getAttribute('politician');
 		p = p.toUpperCase();
 		slide.querySelector('h3').textContent = p;
+		slide.querySelector('h3').style.fontSize = '1.4em';
+		slide.querySelector('h3').style.fontWeight = 'normal';
+		slide.querySelector('h3').style.color = '#333333';
 		slide.querySelector('.politics_top_statements_container').style.removeProperty('border');
 	}else
         title_a = "Тематика заяв ключових політиків";
