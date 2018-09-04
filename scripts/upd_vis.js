@@ -213,7 +213,7 @@ function upd_vis(){
 		for(i in b){
 			b[i].onclick = function(){
 				var gt = this.parentNode.querySelector(".gt_h3").textContent;
-				var topicsonslide = gt.split(" та ");
+				var topicsonslide = gt.split("; ");
 				for (var i = 0; i < topicsonslide.length; i++)
 				{
                     gt = topicsonslide[i];
