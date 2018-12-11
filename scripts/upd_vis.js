@@ -32,51 +32,56 @@ function upd_vis(){
 	var a = function(){
 		var chart;
 		for(k in charts){
-			if(data_series[k].length){
-				chart = charts[k];
-				var mt = chart.margin[0];
-				if(mt === undefined)
-					mt = 0;
-				var crt = document.getElementById("chart_container_" + k);
-				var hc_points = crt.querySelectorAll(".highcharts-point");
-				
-				var bar_height, annot_height;
-				var annot_padding = chart.annotations[0].labels[0].padding;
-				var callout_offset = 16; //callout default offset from point -16
-				var x;
-				
-				for(var i = 0, l = chart.annotations[0].labels.length; i < l; i++){
-					bar_height = hc_points[i].height.baseVal.value;
-					annot_height = chart.annotations[0].labels[i].height;
-					
-					x = bar_height + annot_height + annot_padding + callout_offset - chart.plotHeight;
-					
-					if(x > 0){
-						chart.update({
-							chart: {
-								marginTop: mt + x
-							}
-						});
-						
-						//now again get the svg element transform property, evaluate, re-update
-						var hc_annot_lbls = crt.querySelectorAll(".highcharts-annotation-label");
-						for(var ii = 0, ll = hc_annot_lbls.length, t_prop; ii < ll; ii++){
-							t_prop = hc_annot_lbls[ii].getAttribute("transform");
-							t_prop = t_prop.slice(t_prop.indexOf(","));
-							t_prop = t_prop.slice(1, t_prop.length - 1);
-							t_prop = Number(t_prop);
-							if(t_prop <= 0){
-								x += 0 + t_prop + annot_padding * 2;
-								chart.update({
-									chart: {
-										marginTop: mt + x
-									}
-								});
-							}
-						}					
-					}
-				}
-			}
+			try {
+                if (data_series[k].length) {
+                    chart = charts[k];
+                    var mt = chart.margin[0];
+                    if (mt === undefined)
+                        mt = 0;
+                    var crt = document.getElementById("chart_container_" + k);
+                    var hc_points = crt.querySelectorAll(".highcharts-point");
+
+                    var bar_height, annot_height;
+                    var annot_padding = chart.annotations[0].labels[0].padding;
+                    var callout_offset = 16; //callout default offset from point -16
+                    var x;
+
+                    for (var i = 0, l = chart.annotations[0].labels.length; i < l; i++) {
+                        bar_height = hc_points[i].height.baseVal.value;
+                        annot_height = chart.annotations[0].labels[i].height;
+
+                        x = bar_height + annot_height + annot_padding + callout_offset - chart.plotHeight;
+
+                        if (x > 0) {
+                            chart.update({
+                                chart: {
+                                    marginTop: mt + x
+                                }
+                            });
+
+                            //now again get the svg element transform property, evaluate, re-update
+                            var hc_annot_lbls = crt.querySelectorAll(".highcharts-annotation-label");
+                            for (var ii = 0, ll = hc_annot_lbls.length, t_prop; ii < ll; ii++) {
+                                t_prop = hc_annot_lbls[ii].getAttribute("transform");
+                                t_prop = t_prop.slice(t_prop.indexOf(","));
+                                t_prop = t_prop.slice(1, t_prop.length - 1);
+                                t_prop = Number(t_prop);
+                                if (t_prop <= 0) {
+                                    x += 0 + t_prop + annot_padding * 2;
+                                    chart.update({
+                                        chart: {
+                                            marginTop: mt + x
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (e) {
+				console.log(e);
+            }
 		}
 	}
 	a(); a = null;
@@ -117,27 +122,32 @@ function upd_vis(){
 	}
 	
 	function fixup_labels_above_xaxis(gt){
-		var chart = charts[gt];
-		
-		var a = chart.series[0].data[0].dataLabel.height;
-		var b = chart.series[0].data[0].dataLabel.padding + 1;
-		var c = chart.plotHeight - a + b;
-		var data_label_height = chart.series[0].data[0].dataLabel.height - chart.series[0].data[0].dataLabel.padding * 2;
-		for(var i = 0, l = chart.series[0].data.length; i < l; i++){
-			if(chart.series[0].data[i].dataLabel.y > c){
-				//chart.series[0].data[i].dataLabel.ySetter(c);			
-				data_series[gt][i].dataLabels = {
-					y: chart.series[0].data[i].shapeArgs.height + chart.series[0].data[0].dataLabel.padding - 1
+		try {
+			var chart = charts[gt];
+
+			var a = chart.series[0].data[0].dataLabel.height;
+			var b = chart.series[0].data[0].dataLabel.padding + 1;
+			var c = chart.plotHeight - a + b;
+			var data_label_height = chart.series[0].data[0].dataLabel.height - chart.series[0].data[0].dataLabel.padding * 2;
+			for(var i = 0, l = chart.series[0].data.length; i < l; i++){
+				if(chart.series[0].data[i].dataLabel.y > c){
+					//chart.series[0].data[i].dataLabel.ySetter(c);
+					data_series[gt][i].dataLabels = {
+						y: chart.series[0].data[i].shapeArgs.height + chart.series[0].data[0].dataLabel.padding - 1
+					}
+				}
+				if(chart.series[0].data[i].shapeArgs.height < data_label_height){
+					data_series[gt][i].dataLabels.color = '#666666';
+					data_series[gt][i].dataLabels.y = 5;
 				}
 			}
-			if(chart.series[0].data[i].shapeArgs.height < data_label_height){
-				data_series[gt][i].dataLabels.color = '#666666';
-                data_series[gt][i].dataLabels.y = 5;
-			}
-		}
-		chart.update({
-			series: [{data: data_series[gt]}]
-		});
+			chart.update({
+				series: [{data: data_series[gt]}]
+			});
+        }
+        catch (e) {
+
+        }
 	}
 	setTimeout(function(){
 		for(k in data_series){
