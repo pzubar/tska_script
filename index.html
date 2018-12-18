@@ -15,7 +15,7 @@
 		.pagebreak { page-break-before: always; }
 		.slide {
 			margin: 0!important;
-			border: 0px solid white!important;
+			border: 0 solid white!important;
 			overflow: hidden;
 		}
 		.cover-title, .slide-title {
@@ -25,7 +25,7 @@
 			border: 0px solid white!important;
 		}
 		p {
-			padding-top: 0px;
+			padding-top: 0;
 		}
 		body, article {
 			width: 100%;
@@ -35,6 +35,9 @@
 		.textarea {
 			border: none!important;
 		}
+        svg > rect {
+            fill: none!important;
+        }
 	</style>
 
 </head>
@@ -181,11 +184,11 @@
 
 
 	<script src="scripts/thirdparty/highcharts.js"></script>
-	<script src="https://code.highcharts.com/modules/annotations.js"></script>
-	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="scripts/thirdparty/highcharts-annotations.js"></script>
+	<script src="scripts/thirdparty/highcharts-exporting.js"></script>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+	<script src="scripts/thirdparty/xlsx.js"></script>
+	<script src="scripts/thirdparty/jszip.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.10.8/xlsx.full.min.js"></script>
 
 	<script src="scripts/pz_script.js"></script>
