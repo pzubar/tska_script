@@ -94,7 +94,8 @@ function reader_to_politics_top_statements(){
 					width: calc_width(),
 					style: {
 						'fontFamily': '\"Roboto Condensed\"',
-					}
+					},
+                    backgroundColor: 'none',
 				},
 				
 				navigation: {

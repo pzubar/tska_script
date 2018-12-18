@@ -253,7 +253,7 @@ function upd_vis() {
                     // alert(chart.annotations[0].labels[0].alignAttr.y);
 
                     //!!!!Changing small charts titles positioning
-                    debugger;
+                    // debugger;
                     var lowerPos = 5;
                     if (chart.annotations[0].labels[0].alignAttr.y - 15 > 0)
                         lowerPos = chart.annotations[0].labels[0].alignAttr.y - 15;

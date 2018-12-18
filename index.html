@@ -7,7 +7,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 	<style type="text/css" media="print">
-		.no-print { display: none!important; }
+        @import 'https://code.highcharts.com/css/highcharts.css';
+
+        .no-print { display: none!important; }
 		.main-container {
 			height: auto!important;
 		}
@@ -22,7 +24,7 @@
 			color: #6dc8eb !important;
 		}
 		.gt_by_pol_chart_container, .chart_container {
-			border: 0px solid white!important;
+			border: 0 solid white!important;
 		}
 		p {
 			padding-top: 0;
@@ -35,8 +37,8 @@
 		.textarea {
 			border: none!important;
 		}
-        svg > rect {
-            fill: none!important;
+        .highcharts-background {
+            fill: none;
         }
 	</style>
 
@@ -175,21 +177,13 @@
 		<select class="no-print add-to-chart add-to-chart-polstatements"></select>
 		<button class="no-print apply-add-to-chart">Add</button>
 	</div>
-	<span id="slides_end"><span>
-	
-	<!--<div class="infolog no-print">-->
-		<!--<div>InfoLog</div>-->
-		<!--<textarea id="infolog_area" rows="4" cols="50"></textarea>-->
-	<!--</div>-->
-
+	<span id="slides_end"></span>
 
 	<script src="scripts/thirdparty/highcharts.js"></script>
 	<script src="scripts/thirdparty/highcharts-annotations.js"></script>
 	<script src="scripts/thirdparty/highcharts-exporting.js"></script>
 
-	<script src="scripts/thirdparty/xlsx.js"></script>
-	<script src="scripts/thirdparty/jszip.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.10.8/xlsx.full.min.js"></script>
+	<script src="scripts/thirdparty/xlsx.fulll.js"></script>
 
 	<script src="scripts/pz_script.js"></script>
 	<script src="scripts/chart_politics_by_gts.js"></script>

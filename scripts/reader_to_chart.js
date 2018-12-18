@@ -218,8 +218,8 @@ function reader_to_chart(){
 					width: calc_width(),
 					style: {
 						'fontFamily': '\"Roboto Condensed\"',
-						// 'borderRight': '1px dashed lightblue',
-					}
+					},
+                    backgroundColor: 'none',
 				},
 				
 				navigation: {
