@@ -82,7 +82,7 @@ function upd_vis() {
                 console.log(e);
             }
         }
-    }
+    };
     a();
     a = null;
 
@@ -125,7 +125,7 @@ function upd_vis() {
     function fixup_labels_above_xaxis(gt) {
 
         var chart = charts[gt];
-        debugger;
+        // debugger;
         if (!chart.series[0].data[0] || !chart.series[0].data[0].dataLabel)
             return;
         var a = chart.series[0].data[0].dataLabel.height;
