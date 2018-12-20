@@ -277,9 +277,9 @@ function reader_to_chart() {
                     }],
                     annotations: [{
                         labelOptions: {
-                            distance:25,
+                            // distance:5,
                             allowOverlap: true,
-                            backgroundColor: '#c1c1c1',
+                            backgroundColor: '#F0F0F0',
                             borderColor: '#cccccc',
                             overflow: 'none'
                         },

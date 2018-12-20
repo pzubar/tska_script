@@ -31,7 +31,7 @@ function upd_vis() {
     var a = function () {
         var chart;
         for (let k in charts) {
-            // try {
+            try {
                 if (data_series[k].length) {
                     chart = charts[k];
                     var mt = chart.margin[0];
@@ -77,10 +77,10 @@ function upd_vis() {
                         }
                     }
                 }
-            // }
-            // catch (e) {
-            //     console.log(e);
-            // }
+            }
+            catch (e) {
+                console.log(e);
+            }
         }
     };
     a();
@@ -133,7 +133,7 @@ function upd_vis() {
         var c = chart.plotHeight - a + b;
         var data_label_height = chart.series[0].data[0].dataLabel.height - chart.series[0].data[0].dataLabel.padding * 2;
         for (var i = 0, l = chart.series[0].data.length; i < l; i++) {
-            // try {
+            try {
                 if (chart.series[0].data[i].dataLabel.y > c) {
                     //chart.series[0].data[i].dataLabel.ySetter(c);
                     data_series[gt][i].dataLabels = {
@@ -144,11 +144,11 @@ function upd_vis() {
                     data_series[gt][i].dataLabels.color = '#666666';
                     data_series[gt][i].dataLabels.y = 5;
                 }
-            // }
-            // catch (e) {
-            //     console.log(e);
-            //     console.log(data_series[gt][i]);
-            // }
+            }
+            catch (e) {
+                console.log(e);
+                console.log(data_series[gt][i]);
+            }
         }
         chart.update({
             series: [{data: data_series[gt]}]
