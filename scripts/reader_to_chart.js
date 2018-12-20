@@ -120,21 +120,21 @@ function reader_to_chart() {
             ul.appendChild(li);
         }
 
-        // var a = document.getElementsByClassName("export_btn");
-        // for (var i = 0, l = a.length; i < l; i++) {
-        //     a[i].addEventListener("click", function () {
-        //         var gt = this.parentNode.parentNode.querySelector(".gt_h3").textContent;
-        //         var chart = charts[gt];
-        //         chart.exportChart(
-        //             null, {
-        //                 annotations: [{
-        //                     labelOptions: chart.annotations[0].userOptions.labelOptions,
-        //                     labels: lbls[gt]
-        //                 }]
-        //             }
-        //         );
-        //     });
-        // }
+        var a = document.getElementsByClassName("export_btn");
+        for (var i = 0, l = a.length; i < l; i++) {
+            a[i].addEventListener("click", function () {
+                var gt = this.parentNode.parentNode.querySelector(".gt_h3").textContent;
+                var chart = charts[gt];
+                chart.exportChart(
+                    null, {
+                        annotations: [{
+                            labelOptions: chart.annotations[0].userOptions.labelOptions,
+                            labels: lbls[gt]
+                        }]
+                    }
+                );
+            });
+        }
 
         // a = document.getElementsByClassName("select_scalebygt");
         var a = document.getElementsByClassName("add-to-chart");
@@ -221,14 +221,6 @@ function reader_to_chart() {
                             'fontFamily': '\"Roboto Condensed\"',
                         },
                         // backgroundColor: 'none',
-                        events: {
-                            load: function () {
-                                this.annotations.forEach(function (annotation) {
-                                    annotation.setControlPointsVisibility(true);
-                                    annotation.cpVisibility = true;
-                                });
-                            }
-                        }
                     },
 
                     navigation: {
@@ -257,8 +249,6 @@ function reader_to_chart() {
                         column: {
                             pointPadding: 0.2,
                             borderWidth: 0,
-
-
                             dataLabels: {
                                 enabled: true,
                                 y: 24,
@@ -287,16 +277,12 @@ function reader_to_chart() {
                     }],
                     annotations: [{
                         labelOptions: {
-                            distance: 20,
                             allowOverlap: true,
+                            backgroundColor: '#f04556',
+                            borderColor: '#cccccc',
+                            overflow: 'none'
                         },
-                        labels: lbls[gt],
-                        events: {
-                            click: function () {
-                                this.cpVisibility = !this.cpVisibility;
-                                this.setControlPointsVisibility(this.cpVisibility);
-                            }
-                        }
+                        labels: lbls[gt]
                     }]
                 });
             }
