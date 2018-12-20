@@ -255,8 +255,8 @@ function upd_vis() {
                     //!!!!Changing small charts titles positioning
                     // debugger;
                     var lowerPos = 5;
-                    if (chart.annotations[0].labels[0].alignAttr.y - 15 > 0)
-                        lowerPos = chart.annotations[0].labels[0].alignAttr.y - 15;
+                    // if (chart.annotations[0].labels[0].alignAttr.y - 15 > 0)
+                    //     lowerPos = chart.annotations[0].labels[0].alignAttr.y - 15;
                     // alert(lowerPos);
 
                     // var lowerPos = y:chart.annotations[0].labels[0].alignAttr.y - 7
