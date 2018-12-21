@@ -51,31 +51,35 @@ function upd_vis() {
 						
 						// found formula
                         x = bar_height + annot_height + annot_padding + callout_offset - chart.plotHeight;
-											
+						console.log(k + ' x: ' + x);
+						
                         if (x > 0) {
                             mt = chart.margin[0] === undefined ? 0: chart.margin[0];	// @valeks 2018-12-21: fixes the marginTop - against labels overlapping title on top 
-							chart.update({
-                                chart: {
-                                    marginTop: mt + x
-                                }
-                            });
+							if(x > mt){
+								console.log(k + ' resetting mt: ' + (mt + x).toString());
+								chart.update({
+									chart: {
+										marginTop: mt + x
+									}
+								});
 
-                            //now again get the svg element transform property, evaluate, re-update
-                            var hc_annot_lbls = crt.querySelectorAll(".highcharts-annotation-label");
-                            for (var ii = 0, ll = hc_annot_lbls.length, t_prop; ii < ll; ii++) {
-                                t_prop = hc_annot_lbls[ii].getAttribute("transform");
-                                t_prop = t_prop.slice(t_prop.indexOf(","));
-                                t_prop = t_prop.slice(1, t_prop.length - 1);
-                                t_prop = Number(t_prop);
-                                if (t_prop <= 0) {
-                                    x += 0 + t_prop + annot_padding * 2;
-                                    chart.update({
-                                        chart: {
-                                            marginTop: mt + x
-                                        }
-                                    });
-                                }
-                            }
+								//now again get the svg element transform property, evaluate, re-update
+								var hc_annot_lbls = crt.querySelectorAll(".highcharts-annotation-label");
+								for (var ii = 0, ll = hc_annot_lbls.length, t_prop; ii < ll; ii++) {
+									t_prop = hc_annot_lbls[ii].getAttribute("transform");
+									t_prop = t_prop.slice(t_prop.indexOf(","));
+									t_prop = t_prop.slice(1, t_prop.length - 1);
+									t_prop = Number(t_prop);
+									if (t_prop <= 0) {
+										x += 0 + t_prop + annot_padding * 2;
+										chart.update({
+											chart: {
+												marginTop: mt + x
+											}
+										});
+									}
+								}
+							}
                         }
                     }
                 }
