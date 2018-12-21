@@ -48,11 +48,13 @@ function upd_vis() {
                     for (var i = 0, l = chart.annotations[0].labels.length; i < l; i++) {
                         bar_height = hc_points[i].height.baseVal.value;
                         annot_height = chart.annotations[0].labels[i].height;
-
+						
+						// found formula
                         x = bar_height + annot_height + annot_padding + callout_offset - chart.plotHeight;
-
+											
                         if (x > 0) {
-                            chart.update({
+                            mt = chart.margin[0] === undefined ? 0: chart.margin[0];	// @valeks 2018-12-21: fixes the marginTop - against labels overlapping title on top 
+							chart.update({
                                 chart: {
                                     marginTop: mt + x
                                 }
